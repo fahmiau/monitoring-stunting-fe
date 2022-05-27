@@ -1,4 +1,4 @@
-<nav class="bg-primary shadow-xl pt-2 md:pt-1 pb-1 px-1 mt-0 h-auto fixed w-full z-20 top-0">
+<nav class="bg-white shadow-xl pt-2 md:pt-1 pb-1 px-1 mt-0 h-auto fixed w-full z-20 top-0">
 
     <div class="flex flex-wrap items-center">
         <div class="flex flex-shrink md:w-1/3 justify-center md:justify-start text-white pl-8">
@@ -23,7 +23,7 @@
                 </li>
                 <li class="flex-1 md:flex-none md:mr-3">
                     <div class="relative inline-block">
-                        <span class="pr-4"><i class="em em-robot_face"></i></span> Hi, User
+                        <span class="pr-4"><i class="em em-robot_face"></i></span> {{ strtok(Session::get('user_data')->name,' ') }}
                     </div>
                 </li>
             </ul>
@@ -39,24 +39,24 @@
   
         <div class="md:mt-12 md:w-48 md:fixed md:left-0 md:top-0 content-center md:content-start text-left justify-between">
             <ul class="list-reset flex flex-row md:flex-col py-0 md:py-3 px-1 md:px-2 text-center md:text-left">
-                <li class="mr-3 flex-1">
-                    <a href="{{ url('/') }}" class="block py-1 md:py-3 pl-1 align-middle text-gray-100 no-underline hover:text-gray-100 border-b-2 border-gray-800 hover:border-pink-500">
-                        <i class="fas fa-tasks pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-100 block md:inline-block">Dashboard</span>
+                <li id="home" class="mr-3 flex-1">
+                    <a href="{{ url('/') }}" class="block py-1 md:py-3 pl-1 align-middle text-gray-100 no-underline hover:text-gray-100 border-b-2 hover:border-primary {{ Request::is('/') ? 'border-blue-600' : 'border-gray-800' }} ">
+                        <i class="fas fa-tasks pr-0 md:pr-3 {{ Request::is('/') ? 'text-blue-600' : '' }}"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-100 block md:inline-block">Dashboard</span>
                     </a>
                 </li>
-                <li class="mr-3 flex-1">
-                    <a href="{{ url('/list-account') }}" class="block py-1 md:py-3 pl-1 align-middle text-gray-100 no-underline hover:text-gray-100 border-b-2 border-gray-800 hover:border-purple-500">
-                        <i class="fa fa-envelope pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-100 block md:inline-block">Daftar Akun</span>
+                <li id="account" class="mr-3 flex-1">
+                    <a href="{{ url('/list-account') }}" class="block py-1 md:py-3 pl-1 align-middle text-gray-100 no-underline hover:text-gray-100 border-b-2 hover:border-primary  {{ Request::is('list-account*') ? 'border-blue-600' : 'border-gray-800' }}">
+                        <i class="fa fa-envelope pr-0 md:pr-3 {{ Request::is('list-account*') ? 'text-blue-600' : '' }}"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-100 block md:inline-block">Daftar Akun</span>
                     </a>
                 </li>
-                <li class="mr-3 flex-1">
-                    <a href="{{ url('/article') }}" class="block py-1 md:py-3 pl-1 align-middle text-gray-100 no-underline hover:text-gray-100 border-b-2 border-blue-600">
-                        <i class="fas fa-chart-area pr-0 md:pr-3 text-blue-600"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-100 md:text-gray-100 block md:inline-block">Artikel</span>
+                <li id="article" class="mr-3 flex-1">
+                    <a href="{{ url('/article/list') }}" class="block py-1 md:py-3 pl-1 align-middle text-gray-100 no-underline hover:text-gray-100 border-b-2 hover:border-primary  {{ Request::is('article*') ? 'border-blue-600' : 'border-gray-800' }}">
+                        <i class="fas fa-chart-area pr-0 md:pr-3 {{ Request::is('article*') ? 'text-blue-600' : '' }}"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-100 md:text-gray-100 block md:inline-block">Artikel</span>
                     </a>
                 </li>
-                <li class="mr-3 flex-1">
-                    <a href="{{ url('/report') }}" class="block py-1 md:py-3 pl-0 md:pl-1 align-middle text-gray-100 no-underline hover:text-gray-100 border-b-2 border-gray-800 hover:border-red-500">
-                        <i class="fa fa-wallet pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-100 md:text-gray-100 block md:inline-block">Report</span>
+                <li id="report" class="mr-3 flex-1">
+                    <a href="{{ url('/report') }}" class="block py-1 md:py-3 pl-0 md:pl-1 align-middle text-gray-100 no-underline hover:text-gray-100 border-b-2 hover:border-primary {{ Request::is('report*') ? 'border-blue-600' : 'border-gray-800' }}">
+                        <i class="fa fa-wallet pr-0 md:pr-3 {{ Request::is('report*') ? 'text-blue-600' : '' }}"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-100 md:text-gray-100 block md:inline-block">Report</span>
                     </a>
                 </li>
             </ul>
@@ -64,3 +64,7 @@
   
   
     </div>
+
+    <script>
+
+    </script>

@@ -62,6 +62,8 @@ class UserController extends Controller
                 return back()->withInput()->withErrors(['email' => 'Email atau Password Salah !!!']);
             }
         }
+        $daerah = $this->getData('kelurahan/user/'.$result->user->id);
+        Session::put('user_daerah',$daerah);
         Session::put('user_token',$result->token);
         Session::put('user_data',$result->user);
         Session::put('user_role',$result->role->category);
@@ -74,8 +76,8 @@ class UserController extends Controller
         if (!Session::get('user_token')) {
             return redirect()->route('login');
         }
-
-        return view('dashboard.dashboard');
+        $dashboard = $this->getData('dashboard');
+        return view('dashboard.dashboard')->with('data',$dashboard);
     }
 
     public function logout()
@@ -101,9 +103,9 @@ class UserController extends Controller
     {
         try {
             $response = $this->postData($request->input(),'register');
-            dd($response);
+            // dd($response);
         } catch (\Exception $res) {
-            dd($res);
+            // dd($res);
         }
         return redirect()->route('viewAccount');
     }

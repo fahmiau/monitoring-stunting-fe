@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\ChildrenController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\UserController;
@@ -31,12 +32,22 @@ Route::post('/add-new',[UserController::class,'addNew']);
 Route::get('/report',[ReportController::class,'viewReport']);
 Route::get('/detail-anak/{id}',[ReportController::class,'viewChildrenDetail']);
 
-Route::get('/list-article',[ArticleController::class,'index']);
-Route::get('/edit-article/{id}',[ArticleController::class,'show']);
-Route::get('/new-article',[ArticleController::class,'addNew']);
-Route::post('/add-new',[ArticleController::class,'store']);
-Route::post('/update-article',[ArticleController::class,'update']);
+Route::get('/article/list',[ArticleController::class,'index']);
+Route::get('/article/published',[ArticleController::class,'articleShowPublished']);
+Route::get('/article/published/{slug}',[ArticleController::class,'articleShow']);
+Route::get('/article/create',[ArticleController::class,'create']);
+Route::get('/article/edit/{slug}',[ArticleController::class,'show'])->name('articleEdit');
+Route::post('/article/store',[ArticleController::class,'store']);
+Route::post('/article/update/{slug}',[ArticleController::class,'update']);
+Route::post('/article/image-upload',[ArticleController::class,'uploadImage']);
 
+// Route::get('/childrens/kelurahan/{id}',[ChildrenController::class,'getByKelurahan']);
+// Route::get('/childrens/kecamatan/{id}',[ChildrenController::class,'getByKecamatan']);
+// Route::get('/childrens/kota_kabupaten/{id}',[ChildrenController::class,'getByKotaKabupaten']);
+// Route::get('/childrens/provinsi/{id}',[ChildrenController::class,'getByProvinsi']);
+
+Route::get('/childrens/{type}/{id}',[ChildrenController::class,'getChildrens']);
+Route::get('/status-stunting/{type}/{id}',[ChildrenController::class,'getStatusStunting']);
 
 // Route::get('/article',[ReportController::class,'viewReport']);
 

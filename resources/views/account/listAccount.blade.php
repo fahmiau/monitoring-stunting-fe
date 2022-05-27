@@ -1,7 +1,6 @@
 @extends('app')
 
 @section('container')
-<div class="main-content flex-1 bg-gray-100 mt-12 md:mt-2 pb-24 md:pb-5">
   <h2 class="text-2xl font-medium ml-8 my-8">Daftar Akun Ibu</h2>
   {{-- <div class="w-2/3 ml-8 bg-white filter drop-shadow-xl p-8 rounded-xl"> --}}
     <a href="{{ url('/add-new') }}" class="max-w-min">
@@ -38,5 +37,4 @@
       </table>
     </div>
     {{-- </div> --}}
-</div>
 @endsection

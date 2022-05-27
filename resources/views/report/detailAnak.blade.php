@@ -1,7 +1,6 @@
 @extends('app')
 
 @section('container')
-<div class="main-content flex-1 bg-gray-100 mt-12 md:mt-2 pb-24 md:pb-5">
   <h2 class="text-2xl font-medium ml-8 my-8">Detail Anak</h2>
   <div class="container max-w-min ml-8 bg-white filter drop-shadow-xl p-8 rounded-xl">
 
@@ -38,8 +37,9 @@
         </tr>
       </table>
     </div>
-    <div class="w-full bg-white filter drop-shadow-xl p-3 rounded-xl">
-      
+    <div class="w-full bg-white filter drop-shadow-xl p-3 rounded-xl border-t-4 border-t-secondary">
+      <input type="hidden" value="{{ $data->children->id }}" name="childrenId" id="childrenId">
+      <input type="hidden" name="gender" id="gender" value="{{ ($data->children->jenis_kelamin == 'Laki-laki') ? 'boy' : 'girl' }}">
       <h2 class="text-lg font-medium text-center mb-3">Data Bulanan</h2>
       <table class="border-separate border table-fixed ">
         <thead>
@@ -65,40 +65,52 @@
       
     </div>
     
-    <div class="max-w-min mt-10 bg-white filter drop-shadow-xl p-3 rounded-xl">
-      <h2 class="text-center text-lg font-medium">Grafik Pertumbuhan Berat Badan</h2>
+    <div class="max-w-min mt-10 bg-white filter drop-shadow-xl p-3 rounded-xl border-t-4 border-t-secondary">
+      <h2 class="text-center text-lg font-medium my-4">Grafik Pertumbuhan Tinggi Badan</h2>
+      <div>
+        <canvas id="height" width="1200" height="600"></canvas>
+      </div>
+    </div>
+    <div class="max-w-min mt-10 bg-white filter drop-shadow-xl p-3 rounded-xl border-t-4 border-t-secondary">
+      <h2 class="text-center text-lg font-medium my-4">Grafik Pertumbuhan Berat Badan</h2>
       <div>
         <canvas id="weight" width="1200" height="600"></canvas>
       </div>
-      <h2 class="text-center text-lg font-medium my-4">Grafik Pertumbuhan Tinggi Badan</h2>
-      <div>
-        <canvas id="height" width="800" height="600"></canvas>
-      </div>
     </div>
   </div>
-</div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js"></script>
   <script>
-    
-  createChart('http://localhost:8000/api/weight-girl/all')
-  function createChart(url) {
+  var gender = document.getElementById('gender').value
+  var childrenId = parseInt(document.getElementById('childrenId').value)
+  createChart('http://localhost:8000/api/graph/'+gender+'/height/'+childrenId,'height')
+  createChart('http://localhost:8000/api/graph/'+gender+'/weight/'+childrenId,'weight')
+  
+  function createChart(url,type) {
     fetch(url)
     .then(response => response.json())
     .then(response => {
-      const labels = response.months;
+      console.log(response.data_children);
+      const labels = response.months
       const data = {
         labels: labels,
         datasets: [
           {
+            label: 'Data Anak',
+            data: response.data_children,
+            borderColor: 'rgb(33, 255, 249)',
+            backgroundColor: 'rgba(43,45,66, 0.8)',
+            tension: 0.3
+          },
+          {
             label: '-3SD',
-            data: response.m3sd,
+            data: response.negative_3sd,
             borderColor: 'rgb(0, 0, 0)',
             backgroundColor: 'rgba(0,0,0, 0.4)',
             tension: 0.3
           },
           {
             label: '-2SD',
-            data: response.m2sd,
+            data: response.negative_2sd,
             borderColor: 'rgb(200,0,0)',
             backgroundColor: 'rgba(200,0,0, 0.4)',
             tension: 0.3
@@ -126,14 +138,14 @@
           // },
           {
             label: '2SD',
-            data: response.p2sd,
+            data: response.positive_2sd,
             borderColor: 'rgb(200,0,0)',
             backgroundColor: 'rgba(200,0,0, 0.4)',
             tension: 0.3
           },
           {
             label: '3SD',
-            data: response.p3sd,
+            data: response.positive_3sd,
             borderColor: 'rgb(0, 0, 0)',
             backgroundColor: 'rgba(0,0,0, 0.4)',
             tension: 0.3
@@ -174,11 +186,13 @@
           }
         },
       };
-      const ctx = document.getElementById('weight');
-      const ctx1 = document.getElementById('height');
-
-      const weightChart = new Chart(ctx, config);
-      const heightChart = new Chart(ctx1, config);
+      if (type == 'weight') {
+        const ctx = document.getElementById('weight');
+        const weightChart = new Chart(ctx, config);
+      } else {
+        const ctx1 = document.getElementById('height');
+        const heightChart = new Chart(ctx1, config);
+      }
     });
   }
 </script>

@@ -1,11 +1,10 @@
 @extends('app')
 
 @section('container')
-<div class="main-content flex-1 bg-gray-100 mt-12 md:mt-2 pb-24 md:pb-5">
   <h2 class="text-2xl font-medium ml-8 my-8">Create Account</h2>
   {{-- <div class="w-2/3 ml-8 bg-white filter drop-shadow-xl p-8 rounded-xl"> --}}
 
-  <form action="add-new" method="post">
+  <form action="{{ url('/add-new') }}" method="post">
     <div class="ml-8 mr-12">
       <div class="flex flex-wrap">
           @csrf
@@ -118,7 +117,6 @@
       </div>
     </form>
     {{-- </div> --}}
-</div>
 <script src="{{ asset('/js/alamat.js') }}"></script>
 <script>
   function categoryForm(val) {
