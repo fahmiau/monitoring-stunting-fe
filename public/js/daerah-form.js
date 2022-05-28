@@ -47,7 +47,7 @@ function getChildrenData(type,id) {
   graphStatus(type,id)
   axios({
     method : 'get',
-    url : 'localhost:8080/childrens/'+type+'/'+id,
+    url : 'http://167.172.85.4/childrens/'+type+'/'+id,
     headers : {
       'Accept' : 'application/json'
     }
@@ -58,7 +58,7 @@ function getChildrenData(type,id) {
       var childrensHtml = ''
       mother.childrens.forEach(children => {
           childrensHtml += '<div>'+
-          '<a class="underline hover:no-underline" href="localhost:8080/detail-anak/'+children.id+'">'+children.nama+'</a>'+
+          '<a class="underline hover:no-underline" href="http://167.172.85.4/detail-anak/'+children.id+'">'+children.nama+'</a>'+
           '</div>'
         })
       var statusHtml = ''
@@ -91,7 +91,7 @@ function kotaKab(val) {
   clearSelectForm(kelurahan_form);
   axios({
     method : 'get',
-    url : 'localhost:8080/api/kota-kabupaten/by-provinsi/'+val,
+    url : 'http://167.172.85.4:8080/api/kota-kabupaten/by-provinsi/'+val,
     headers : {
       'Accept' : 'application/json'
     }
@@ -114,7 +114,7 @@ function kecamatan(val) {
   clearSelectForm(kelurahan_form);
   axios({
     method : 'get',
-    url : 'localhost:8080/api/kecamatan/by-kota-kabupaten/'+val,
+    url : 'http://167.172.85.4:8080/api/kecamatan/by-kota-kabupaten/'+val,
     headers : {
       'Accept' : 'application/json'
     }
@@ -135,7 +135,7 @@ function kelurahan(val) {
   getChildrenData('kecamatan',val)
   axios({
     method : 'get',
-    url : 'localhost:8080/api/kelurahan/by-kecamatan/'+val,
+    url : 'http://167.172.85.4:8080/api/kelurahan/by-kecamatan/'+val,
     headers : {
       'Accept' : 'application/json'
     }
@@ -153,7 +153,7 @@ function kelurahan(val) {
 function graphStatus(type,id) {
   axios({
     method : 'get',
-    url : 'localhost:8080/status-stunting/'+type+'/'+id,
+    url : 'http://167.172.85.4/status-stunting/'+type+'/'+id,
     headers : {
       'Accept' : 'application/json'
     }
