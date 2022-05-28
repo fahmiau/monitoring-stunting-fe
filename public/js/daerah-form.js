@@ -91,7 +91,7 @@ function kotaKab(val) {
   clearSelectForm(kelurahan_form);
   axios({
     method : 'get',
-    url : 'http://127.0.0.1:8000/api/kota-kabupaten/by-provinsi/'+val,
+    url : 'localhost:8080/api/kota-kabupaten/by-provinsi/'+val,
     headers : {
       'Accept' : 'application/json'
     }
@@ -114,7 +114,7 @@ function kecamatan(val) {
   clearSelectForm(kelurahan_form);
   axios({
     method : 'get',
-    url : 'http://127.0.0.1:8000/api/kecamatan/by-kota-kabupaten/'+val,
+    url : 'localhost:8080/api/kecamatan/by-kota-kabupaten/'+val,
     headers : {
       'Accept' : 'application/json'
     }
@@ -135,7 +135,7 @@ function kelurahan(val) {
   getChildrenData('kecamatan',val)
   axios({
     method : 'get',
-    url : 'http://127.0.0.1:8000/api/kelurahan/by-kecamatan/'+val,
+    url : 'localhost:8080/api/kelurahan/by-kecamatan/'+val,
     headers : {
       'Accept' : 'application/json'
     }
