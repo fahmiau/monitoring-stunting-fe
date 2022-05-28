@@ -19,7 +19,7 @@ class UserController extends Controller
     public function getData($endpoint)
     {
         $headers = $this->headers();
-        $client = new Client(['base_uri' => 'http://localhost:8000/api/']);
+        $client = new Client(['base_uri' => 'http://localhost:8080/api/']);
         $response = $client->get($endpoint,['headers' => $headers]);
         $result = json_decode($response->getBody()->getContents());
         return $result;
@@ -28,7 +28,7 @@ class UserController extends Controller
     public function postData($data,$endpoint)
     {
         $headers = $this->headers();
-        $client = new Client(['base_uri' => 'http://localhost:8000/api/']);
+        $client = new Client(['base_uri' => 'http://localhost:8080/api/']);
         $response = $client->post($endpoint,['form_params' => $data, 'headers' => $headers]);
         return json_decode($response->getBody()->getContents());
     }
@@ -51,7 +51,7 @@ class UserController extends Controller
             'email' => $request->email,
             'password' => $request->password
         ];
-        $client = new Client(['base_uri' => 'http://localhost:8000/api/']);
+        $client = new Client(['base_uri' => 'http://localhost:8080/api/']);
         try {
             $response = $client->post('login',['form_params' => $data, 'headers' => $headers]);
             $result = json_decode($response->getBody()->getContents());

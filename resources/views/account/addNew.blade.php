@@ -111,8 +111,8 @@
             </div>
           </div>
         </div>
-        <div class="mt-4 ml-8">
-          <button class="font-medium text-lg bg-primary hover:bg-secondary hover:text-primary py-2 px-10 rounded-md object-center transform duration-300" type="submit">Create Account</button>
+        <div class="mt-4 ml-4">
+          <button class="font-medium text-lg border-2 border-secondary bg-[#06CA51] hover:bg-secondary hover:text-primary py-2 px-10 rounded-md object-center transform duration-300" type="submit">Create Account</button>
         </div>
       </div>
     </form>

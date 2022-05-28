@@ -16,7 +16,7 @@ class ReportController extends Controller
             'Authorization' => 'Bearer ' . Session::get('user_token'),
             'Accept' => 'application/json',
         ];
-        $client = new Client(['base_uri' => 'http://localhost:8000/api/']);
+        $client = new Client(['base_uri' => 'http://localhost:8080/api/']);
         $response = $client->get($endpoint,['headers' => $headers]);
         $result = json_decode($response->getBody()->getContents());
         return $result;

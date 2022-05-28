@@ -47,7 +47,7 @@ function getChildrenData(type,id) {
   graphStatus(type,id)
   axios({
     method : 'get',
-    url : 'http://127.0.0.1:8001/childrens/'+type+'/'+id,
+    url : 'localhost:8080/childrens/'+type+'/'+id,
     headers : {
       'Accept' : 'application/json'
     }
@@ -58,7 +58,7 @@ function getChildrenData(type,id) {
       var childrensHtml = ''
       mother.childrens.forEach(children => {
           childrensHtml += '<div>'+
-          '<a class="underline hover:no-underline" href="http://127.0.0.1:8001/detail-anak/'+children.id+'">'+children.nama+'</a>'+
+          '<a class="underline hover:no-underline" href="localhost:8080/detail-anak/'+children.id+'">'+children.nama+'</a>'+
           '</div>'
         })
       var statusHtml = ''
@@ -153,7 +153,7 @@ function kelurahan(val) {
 function graphStatus(type,id) {
   axios({
     method : 'get',
-    url : 'http://127.0.0.1:8001/status-stunting/'+type+'/'+id,
+    url : 'localhost:8080/status-stunting/'+type+'/'+id,
     headers : {
       'Accept' : 'application/json'
     }

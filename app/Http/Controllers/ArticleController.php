@@ -18,7 +18,7 @@ class ArticleController extends Controller
     public function getData($endpoint)
     {
         $headers = $this->headers();
-        $client = new Client(['base_uri' => 'http://localhost:8000/api/']);
+        $client = new Client(['base_uri' => 'http://localhost:8080/api/']);
         $response = $client->get($endpoint,['headers' => $headers]);
         $result = json_decode($response->getBody()->getContents());
         return $result;
@@ -27,7 +27,7 @@ class ArticleController extends Controller
     public function postData($data,$endpoint)
     {
         $headers = $this->headers();
-        $client = new Client(['base_uri' => 'http://localhost:8000/api/']);
+        $client = new Client(['base_uri' => 'http://localhost:8080/api/']);
         $response = $client->post($endpoint,['form_params' => $data, 'headers' => $headers]);
         return json_decode($response->getBody()->getContents());
     }
