@@ -8,13 +8,14 @@ use Illuminate\Support\Facades\Session;
 
 class ChildrenController extends Controller
 {
+    private $uri = 'http://167.172.85.4:8080/api/';
     public function getData($endpoint)
     {
         $headers = [
             'Authorization' => 'Bearer ' . Session::get('user_token'),
             'Accept' => 'application/json',
         ];
-        $client = new Client(['base_uri' => 'http://localhost:8080/api/']);
+        $client = new Client(['base_uri' => $this->uri]);
         $response = $client->get($endpoint,['headers' => $headers]);
         $result = json_decode($response->getBody()->getContents());
         return $result;

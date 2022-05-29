@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
+    private $uri = 'http://167.172.85.4:8080/api/';
     public function headers()
     {
         return [
@@ -19,16 +20,25 @@ class UserController extends Controller
     public function getData($endpoint)
     {
         $headers = $this->headers();
-        $client = new Client(['base_uri' => 'http://localhost:8080/api/']);
+        $client = new Client(['base_uri' => $this->uri]);
         $response = $client->get($endpoint,['headers' => $headers]);
-        $result = json_decode($response->getBody()->getContents());
+        try {
+            $result = json_decode($response->getBody()->getContents());
+            // dd($result);
+        } catch (\Exception $res) {
+            // dd($res);
+            if ($res->message == 'Unauthenticated') {
+                Session::flush();
+                return view('login');
+            }
+        }
         return $result;
     }
 
     public function postData($data,$endpoint)
     {
         $headers = $this->headers();
-        $client = new Client(['base_uri' => 'http://localhost:8080/api/']);
+        $client = new Client(['base_uri' => $this->uri]);
         $response = $client->post($endpoint,['form_params' => $data, 'headers' => $headers]);
         return json_decode($response->getBody()->getContents());
     }
@@ -51,7 +61,7 @@ class UserController extends Controller
             'email' => $request->email,
             'password' => $request->password
         ];
-        $client = new Client(['base_uri' => 'http://localhost:8080/api/']);
+        $client = new Client(['base_uri' => $this->uri]);
         try {
             $response = $client->post('login',['form_params' => $data, 'headers' => $headers]);
             $result = json_decode($response->getBody()->getContents());
@@ -77,6 +87,7 @@ class UserController extends Controller
             return redirect()->route('login');
         }
         $dashboard = $this->getData('dashboard');
+        // dd($dashboard);
         return view('dashboard.dashboard')->with('data',$dashboard);
     }
 

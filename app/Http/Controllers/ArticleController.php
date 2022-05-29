@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Session;
 
 class ArticleController extends Controller
 {
+    private $uri = 'http://167.172.85.4:8080/api/';
     public function headers()
     {
         return [
@@ -18,7 +19,7 @@ class ArticleController extends Controller
     public function getData($endpoint)
     {
         $headers = $this->headers();
-        $client = new Client(['base_uri' => 'http://localhost:8080/api/']);
+        $client = new Client(['base_uri' => $this->uri]);
         $response = $client->get($endpoint,['headers' => $headers]);
         $result = json_decode($response->getBody()->getContents());
         return $result;
@@ -27,7 +28,7 @@ class ArticleController extends Controller
     public function postData($data,$endpoint)
     {
         $headers = $this->headers();
-        $client = new Client(['base_uri' => 'http://localhost:8080/api/']);
+        $client = new Client(['base_uri' => $this->uri]);
         $response = $client->post($endpoint,['form_params' => $data, 'headers' => $headers]);
         return json_decode($response->getBody()->getContents());
     }
