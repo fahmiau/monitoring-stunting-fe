@@ -8,8 +8,8 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <script src="{!! mix('js/app.js') !!}"></script>
 
-        <title>Laravel</title>
-        <link rel="shortcut icon" href="{{ asset('img/icons/cegah_stunting_logo.png') }}" type="image/x-icon">
+        <title>Cegah Stunting - @yield('title')</title>
+        <link rel="shortcut icon" href="{{ asset('img/icons/logo_kecil.png') }}" type="image/x-icon">
         {{-- <link rel="icon" href="{{ asset('img/icons/cegah_stunting_logo.png') }}" type="image/x-icon"> --}}
 
         <!-- Fonts -->

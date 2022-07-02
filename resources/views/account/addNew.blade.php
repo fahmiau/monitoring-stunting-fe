@@ -1,7 +1,7 @@
 @extends('app')
-
+@section('title','Creat Account')
 @section('container')
-  <h2 class="text-2xl font-medium ml-8 my-8">Create Account</h2>
+@include('partials.titlePage',['title' => 'Create Account'])
   {{-- <div class="w-2/3 ml-8 bg-white filter drop-shadow-xl p-8 rounded-xl"> --}}
 
   <form action="{{ url('/add-new') }}" method="post">

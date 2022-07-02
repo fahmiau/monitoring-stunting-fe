@@ -165,7 +165,7 @@ function graphStatus(type,id) {
       response.data.status_normal,
       response.data.status_diatas
     ]
-    console.log(new_data)
+    // console.log(new_data)
     myChart.data.datasets[0].data = new_data
     // console.log('asdasd '+myChart.data.datasets.data)
     myChart.update()

@@ -1,5 +1,5 @@
 @extends('app')
-
+@section('title','Edit Article')
 @section('container')
   <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
   <script>
@@ -48,8 +48,7 @@
       }
     });
   </script>
-
-  <h2 class="text-2xl font-medium ml-8 my-8">Articel Editor</h2>
+  @include('partials.titlePage',['title' => 'Article Editor'])
   <div class="ml-8">
 
     <form action="{{ url('/article/update/'.$article->slug) }}" method="POST">

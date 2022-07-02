@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Session;
 class ReportController extends Controller
 {
     private $uri = 'http://167.172.85.4:8080/api/';
+    // private $uri = 'http://127.0.0.1:8000/api/';
     public function getData($endpoint)
     {
         $headers = [
@@ -28,8 +29,7 @@ class ReportController extends Controller
     {
         $user_daerah = Session::get('user_daerah');
         $provinsi = $this->getData('provinsi/all');
-        if (isset($user_daerah->provinsi)) {
-
+        if (isset($user_daerah->provinsi_id)) {
             $kota_kabupaten = $this->getData('kota-kabupaten/by-provinsi/'.$user_daerah->provinsi_id);
             $kecamatan = $this->getData('kecamatan/by-kota-kabupaten/'.$user_daerah->kota_kabupaten_id);
             $kelurahan = $this->getData('kelurahan/by-kecamatan/'.$user_daerah->kecamatan_id);

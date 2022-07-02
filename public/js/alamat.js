@@ -8,7 +8,7 @@ function clearSelectForm(element) {
 
 function provinsi() {
   var provinsi_form = document.getElementById('provinsi_id');
-  fetch('http://127.0.0.1:8000/api/provinsi/all')
+  fetch('http://167.172.85.4:8080/api/provinsi/all')
     .then(response => response.json())
     .then((res) => {
       res.forEach(item => {
@@ -27,7 +27,7 @@ function findKotaKab(val) {
   clearSelectForm(kota_kab_form);
   clearSelectForm(kecamatan_form);
   clearSelectForm(kelurahan_form);
-  fetch('http://127.0.0.1:8000/api/kota-kabupaten/by-provinsi/'+val)
+  fetch('http://167.172.85.4:8080/api/kota-kabupaten/by-provinsi/'+val)
     .then(response => response.json())
     .then((res) => {
       res.forEach(item => {
@@ -44,7 +44,7 @@ function findKecamatan(val) {
   var kelurahan_form = document.getElementById('kelurahan_id');
   clearSelectForm(kecamatan_form);
   clearSelectForm(kelurahan_form);
-  fetch('http://127.0.0.1:8000/api/kecamatan/by-kota-kabupaten/'+val)
+  fetch('http://167.172.85.4:8080/api/kecamatan/by-kota-kabupaten/'+val)
     .then(response => response.json())
     .then((res) => {
       res.forEach(item => {
@@ -60,7 +60,7 @@ function findKelurahan(val) {
   var kelurahan_form = document.getElementById('kelurahan_id');
   clearSelectForm(kelurahan_form);
 
-  fetch('http://127.0.0.1:8000/api/kelurahan/by-kecamatan/'+val)
+  fetch('http://167.172.85.4:8080/api/kelurahan/by-kecamatan/'+val)
     .then(response => response.json())
     .then((res) => {
       res.forEach(item => {

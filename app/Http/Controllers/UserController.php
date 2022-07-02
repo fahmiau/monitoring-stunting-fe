@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Session;
 class UserController extends Controller
 {
     private $uri = 'http://167.172.85.4:8080/api/';
+    // private $uri = 'http://127.0.0.1:8000/api/';
     public function headers()
     {
         return [
@@ -26,7 +27,7 @@ class UserController extends Controller
             $result = json_decode($response->getBody()->getContents());
             // dd($result);
         } catch (\Exception $res) {
-            // dd($res);
+            // $result = $res;
             if ($res->message == 'Unauthenticated') {
                 Session::flush();
                 return view('login');

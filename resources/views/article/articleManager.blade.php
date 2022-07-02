@@ -1,7 +1,7 @@
 @extends('app')
-
+@section('title','Article Manager')
 @section('container')
-  <h2 class="text-2xl font-medium ml-8 mt-8 mb-2">Articel Manager</h2>
+  @include('partials.titlePage',['title' => 'Article Manager'])
 
   <a class="inline-block" href="{{ url('/article/create') }}">
     <div class="cursor-pointer ml-8 mb-5 flex bg-white max-w-min rounded-xl hover:bg-gray-600 hover:text-white">
@@ -19,7 +19,8 @@
             <th class="px-4 py-1 border  w-1/12">No</th>
             <th class="px-4 py-1 border  w-1/4">Judul</th>
             <th class="px-4 py-1 border  w-1/4">Tanggal Publish</th>
-            <th class="px-4 py-1 border  w-1/2">Publish</th>
+            <th class="px-4 py-1 border  w-1/2">Status</th>
+            <th class="px-4 py-1 border  w-1/2">Penulis</th>
             <th class="px-4 py-1 border  w-1/2">Views</th>
             <th class="px-4 py-1 border  w-1/2">Likes</th>
             <th class="px-4 py-1 border  w-1/2">Action</th>
@@ -32,7 +33,8 @@
               <td class="border px-4 py-1">{{ $loop->iteration }}</td>
               <td class="border px-4 py-1"><a href="{{ url('/article/published/'.$article->slug) }}" target="_blank">{{ $article->title }}</a></td>
               <td class="border px-4 py-1">{{ $article->publish_date }}</td>
-              <td class="border px-4 py-1">{{ $article->published }}</td>
+              <td class="border px-4 py-1">{{ ($article->published == 0) ? 'Draft' : 'Published' }}</td>
+              <td class="border px-4 py-1">{{ $article->author }}</td>
               <td class="border px-4 py-1">{{ $article->views->views }}</td>
               <td class="border px-4 py-1">{{ $article->likes->likes }}</td>
               <td class="border px-4 py-1"><a class="underline hover:no-underline" href="{{ url('/article/edit/'.$article->slug) }}">EDIT</a></td>

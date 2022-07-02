@@ -10,7 +10,7 @@
 <body class="bg-primary">
   <div class="main-content flex-1 bg-primary mt-12 md:mt-2 pb-24 md:pb-5">
     <div class="p-8 ml-4">
-      <h2 class="text-2xl font-medium ml-8 my-8">{{ $article->title }}</h2>
+      <h2 class="text-2xl text-center font-medium my-8">{{ $article->title }}</h2>
       <div>
         <article>
           {!! $article->body !!}
@@ -19,5 +19,8 @@
       </div>
     </div>
   </div>
+  <script>
+    
+  </script>
 </body>
 </html>

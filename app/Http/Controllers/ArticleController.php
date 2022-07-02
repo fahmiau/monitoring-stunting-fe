@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Session;
 class ArticleController extends Controller
 {
     private $uri = 'http://167.172.85.4:8080/api/';
+    // private $uri = 'http://127.0.0.1:8000/api/';
     public function headers()
     {
         return [

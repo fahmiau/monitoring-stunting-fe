@@ -1,7 +1,7 @@
 @extends('app')
-
+@section('title','Detail')
 @section('container')
-  <h2 class="text-2xl font-medium ml-8 my-8">Detail Anak</h2>
+@include('partials.titlePage',['title' => 'Detail Anak'])
   <div class="container max-w-min ml-8 bg-white filter drop-shadow-xl p-8 rounded-xl">
 
     <div class="container p-2">  
@@ -82,8 +82,8 @@
   <script>
   var gender = document.getElementById('gender').value
   var childrenId = parseInt(document.getElementById('childrenId').value)
-  createChart('http://localhost:8000/api/graph/'+gender+'/height/'+childrenId,'height')
-  createChart('http://localhost:8000/api/graph/'+gender+'/weight/'+childrenId,'weight')
+  createChart('http://167.172.85.4:8080/api/graph/'+gender+'/height/'+childrenId,'height')
+  createChart('http://167.172.85.4:8080/api/graph/'+gender+'/weight/'+childrenId,'weight')
   
   function createChart(url,type) {
     fetch(url)

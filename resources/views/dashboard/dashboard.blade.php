@@ -1,12 +1,8 @@
 @extends('app')
-
+@section('title','Dashboard')
 @section('container')
 
-<div class="bg-secondary pt-3">
-    <div class="rounded-tl-3xl bg-primary p-4 text-2xl border-t-8 border-secondary text-secondary">
-        <h3 class="font-bold pl-2">Overview</h3>
-    </div>
-</div>
+@include('partials.titlePage',['title' => 'Dashboard'])
 
 <div class="flex flex-wrap">
     <div class="w-full md:w-1/2 xl:w-1/3 p-6">
