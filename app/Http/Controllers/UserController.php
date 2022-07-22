@@ -121,4 +121,20 @@ class UserController extends Controller
         }
         return redirect()->route('viewAccount');
     }
+
+    public function showAccount($mother_id)
+    {
+        $mother = $this->getData('mother/mother-id/'.$mother_id);
+        return view('account.show')->with('mother',$mother);
+    }
+
+    public function motherUpdate(Request $request)
+    {
+        try {
+            $response = $this->postData($request->input(),'register');
+            // dd($response);
+        } catch (\Exception $res) {
+            // dd($res);
+        }
+    }
 }
