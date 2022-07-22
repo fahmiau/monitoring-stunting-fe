@@ -14,6 +14,25 @@
           editor.save();
         });
       },
+      content_css: '/css/app.css',
+      body_class: 'p-8',
+      formats: {
+        // Changes the default format for the bold button to produce a span with a bold class
+        bold: { inline: 'span', classes: 'font-bold' },
+        h1: { block: 'h1', classes: 'font-bold text-6xl'},
+        h2: { block: 'h2', classes: 'font-bold text-5xl'},
+        h3: { block: 'h3', classes: 'font-bold text-4xl'},
+        h4: { block: 'h4', classes: 'font-bold text-3xl'},
+        h5: { block: 'h5', classes: 'font-bold text-2xl'},
+        h6: { block: 'h6', classes: 'font-bold text-xl'},
+        alignleft: { block: 'p', classes: 'text-left'},
+        alignright: { block: 'p', classes: 'text-right'},
+        alignjustify: { block: 'p', classes: 'text-justify'},
+        aligncenter: { block: 'p', classes: 'text-center'},
+        italic: { inline: 'span', classes: 'italic'},
+        underline: { inline: 'span', classes: 'underline'},
+        strikethrough: { inline: 'span', classes: 'line-through'},
+      },
       plugins: [
         "advlist autolink lists link image charmap print preview anchor",
         "searchreplace visualblocks code fullscreen",
