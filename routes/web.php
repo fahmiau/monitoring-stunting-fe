@@ -27,6 +27,8 @@ Route::post('/login',[UserController::class,'login']);
 Route::get('/logout',[UserController::class,'logout'])->name('logout');
 Route::get('/list-account',[UserController::class,'viewAccounts'])->name('viewAccount');
 Route::get('/add-new',[UserController::class,'addView']);
+Route::get('/account/mother/{mother_id}',[UserController::class,'showAccount']);
+Route::post('/account/mother/update',[UserController::class, 'motherUpdate']);
 Route::post('/add-new',[UserController::class,'addNew']);
 
 Route::get('/report',[ReportController::class,'viewReport']);
@@ -37,6 +39,7 @@ Route::get('/article/published',[ArticleController::class,'articleShowPublished'
 Route::get('/article/published/{slug}',[ArticleController::class,'articleShow']);
 Route::get('/article/create',[ArticleController::class,'create']);
 Route::get('/article/edit/{slug}',[ArticleController::class,'show'])->name('articleEdit');
+Route::get('/article/delete/{slug}',[ArticleController::class,'delete']);
 Route::post('/article/store',[ArticleController::class,'store']);
 Route::post('/article/update/{slug}',[ArticleController::class,'update']);
 Route::post('/article/image-upload',[ArticleController::class,'uploadImage']);
