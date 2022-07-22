@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Session;
 
 class ArticleController extends Controller
 {
-    private $uri = 'http://167.172.85.4:8080/api/';
+    private $url = 'http://167.172.85.4:8080/api/';
     // private $uri = 'http://127.0.0.1:8000/api/';
     public function headers()
     {
@@ -20,7 +20,7 @@ class ArticleController extends Controller
     public function getData($endpoint)
     {
         $headers = $this->headers();
-        $client = new Client(['base_uri' => $this->uri]);
+        $client = new Client(['base_uri' => $this->url]);
         $response = $client->get($endpoint,['headers' => $headers]);
         $result = json_decode($response->getBody()->getContents());
         return $result;
@@ -29,7 +29,7 @@ class ArticleController extends Controller
     public function postData($data,$endpoint)
     {
         $headers = $this->headers();
-        $client = new Client(['base_uri' => $this->uri]);
+        $client = new Client(['base_uri' => $this->url]);
         $response = $client->post($endpoint,['form_params' => $data, 'headers' => $headers]);
         return json_decode($response->getBody()->getContents());
     }
@@ -97,7 +97,7 @@ class ArticleController extends Controller
         try {
             $data = $this->postData($validated,'article/update/'.$slug);
         } catch (\Exception $res) {
-            dd($res->getMessage());
+            // dd($res->getMessage());
         }
         // dd($data);
         return redirect()->route('articleEdit',['slug' => $data->slug]);
@@ -114,5 +114,14 @@ class ArticleController extends Controller
     {
         $article = $this->getData('article/show/'.$slug);
         return view('article.show')->with('article',$article->data);
+    }
+
+    public function delete($slug)
+    {
+        $headers = $this->headers();
+        $client = new Client(['base_uri' => $this->url]);
+        $response = $client->delete('article/delete/'.$slug,['headers' => $headers]);
+        $result =  $response->getBody()->getContents();
+        return redirect('/article/list');
     }
 }
