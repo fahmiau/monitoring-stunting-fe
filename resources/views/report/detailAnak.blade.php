@@ -12,13 +12,13 @@
           </td>
           <td> : </td>
           <td>
-            {{ $data->children->nama }}
+            {{ $children->nama }}
           </td>
         </tr>
         <tr>
           <td>Tanggal Lahir</td>
           <td> : </td>
-          <td>{{ $data->children->tanggal_lahir }}</td>
+          <td>{{ $children->tanggal_lahir }}</td>
         </tr>
         <tr>
           <td>Usia</td>
@@ -28,18 +28,18 @@
         <tr>
           <td>Alamat</td>
           <td> : </td>
-          <td>{{ $data->children->alamat }}</td>
+          <td>{{ $children->alamat }}</td>
         </tr>
         <tr>
           <td>Status</td>
           <td> : </td>
-          <td>{{ $data->status_stunting }}</td>
+          <td>{{ $children->status_children }}</td>
         </tr>
       </table>
     </div>
     <div class="w-full bg-white filter drop-shadow-xl p-3 rounded-xl border-t-4 border-t-secondary">
-      <input type="hidden" value="{{ $data->children->id }}" name="childrenId" id="childrenId">
-      <input type="hidden" name="gender" id="gender" value="{{ ($data->children->jenis_kelamin == 'Laki-laki') ? 'boy' : 'girl' }}">
+      <input type="hidden" value="{{ $children->id }}" name="childrenId" id="childrenId">
+      <input type="hidden" name="gender" id="gender" value="{{ ($children->jenis_kelamin == 'Laki-laki') ? 'boy' : 'girl' }}">
       <h2 class="text-lg font-medium text-center mb-3">Data Bulanan</h2>
       <table class="border-separate border table-fixed ">
         <thead>
@@ -51,7 +51,7 @@
           </tr>
         </thead>
         <tbody>
-          @foreach ($data->children->data_childrens as $data)              
+          @foreach ($children->data_childrens as $data)              
           <tr>
             <td class="px-2 border border-blue-400">{{ $data->bulan_ke }}</td>
             <td class="px-2 border border-blue-400">{{ $data->tanggal }}</td>
