@@ -31,6 +31,8 @@ Route::get('/account/mother/{mother_id}',[UserController::class,'showAccount']);
 Route::post('/account/mother/update',[UserController::class, 'motherUpdate']);
 Route::post('/add-new',[UserController::class,'addNew']);
 
+Route::get('/children/add/{mother_id}',[ChildrenController::class,'addChildren']);
+
 Route::get('/report',[ReportController::class,'viewReport']);
 Route::get('/detail-anak/{id}',[ReportController::class,'viewChildrenDetail']);
 
