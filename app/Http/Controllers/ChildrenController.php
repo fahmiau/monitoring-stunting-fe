@@ -35,5 +35,18 @@ class ChildrenController extends Controller
         return $data;
     }
 
-
+    public function addChildren($mother_id)
+    {
+        $mother = $this->getData('mother/mother-id/'.$mother_id);
+        $provinsi = $this->getData('provinsi/all');
+        $kota_kabupaten = $this->getData('kota-kabupaten/by-provinsi/'.$mother->provinsi_id);
+        $kecamatan = $this->getData('kecamatan/by-kota-kabupaten/'.$mother->kota_kabupaten_id);
+        $kelurahan = $this->getData('kelurahan/by-kecamatan/'.$mother->kecamatan_id);
+        return view('account.addChildren')
+            ->with('provinsis',$provinsi)
+            ->with('kota_kabupatens',$kota_kabupaten)
+            ->with('kecamatans',$kecamatan)
+            ->with('kelurahans',$kelurahan)
+            ->with('mother',$mother);
+    }
 }

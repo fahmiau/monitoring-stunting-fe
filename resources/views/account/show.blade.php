@@ -4,15 +4,16 @@
   @include('partials.titlePage',['title' => 'Account Detail'])
   <form action="{{ url('/account/mother/update') }}" method="post">
     <div class="ml-8 mr-12">
+      <h3 class="font-bold text-xl pl-2 text-secondary">Profil Ibu</h3>
       <div class="flex flex-wrap">
         @csrf
         <div class="w-1/2 py-2 px-4">
-          <label class="font-medium" for="name">Full Name</label>
+          <label class="font-medium" for="nama">Full Name</label>
           <input 
             class="block w-full my-1 rounded-md pl-4 text-lg py-2 shadow-md border border-transparent focus:outline-none focus:ring-2 ring-blue-400 @error('name') border-red-500 @enderror " 
             type="text" 
-            name="name" 
-            id="name" 
+            name="nama" 
+            id="nama" 
             required value="{{ $mother->nama }}">
         </div>
         {{-- <div class="w-1/2 py-2 px-4">
@@ -52,7 +53,9 @@
               name="provinsi_id" 
               id="provinsi_id" 
               class="block w-full my-1 rounded-md pl-4 text-lg py-2 shadow-md border border-transparent focus:outline-none focus:ring-2 ring-blue-400">
-              <option value="all" disabled selected>-ALL-</option>
+              @foreach ($provinsis as $provinsi)
+                <option value="{{ $provinsi->id }}" {{ ($provinsi->id == $mother->provinsi_id) ? 'selected' : '' }}>{{ $provinsi->provinsi }}</option>
+              @endforeach
               {{-- fetch di js --}}
             </select>
           </div>
@@ -63,8 +66,9 @@
               name="kota_kabupaten_id" 
               id="kota_kabupaten_id"
               class="block w-full my-1 rounded-md pl-4 text-lg py-2 shadow-md border border-transparent focus:outline-none focus:ring-2 ring-blue-400">
-              <option value="all" disabled selected>-ALL-</option>
-              {{-- fetch di js --}}
+              @foreach ($kota_kabupatens as $kota_kab)
+                <option value="{{ $kota_kab->id }}" {{ ($kota_kab->id == $mother->kota_kabupaten_id) ? 'selected' : ''}}>{{ $kota_kab->kota_kabupaten }}</option>
+              @endforeach
             </select>
           </div>
           <div class="w-1/4 py-2 px-4">
@@ -74,8 +78,9 @@
               name="kecamatan_id" 
               id="kecamatan_id" 
               class="block w-full my-1 rounded-md pl-4 text-lg py-2 shadow-md border border-transparent focus:outline-none focus:ring-2 ring-blue-400">
-              <option value="all" disabled selected>-ALL-</option>
-              {{-- fetch di js --}}
+              @foreach ($kecamatans as $kec)
+                <option value="{{ $kec->id }}" {{ ($kec->id == $mother->kecamatan_id ? 'selected' : '') }}>{{ $kec->kecamatan }}</option>
+              @endforeach
             </select>
           </div>
           <div class="w-1/4 py-2 px-4">
@@ -84,8 +89,9 @@
               name="kelurahan_id" 
               id="kelurahan_id" 
               class="block w-full my-1 rounded-md pl-4 text-lg py-2 shadow-md border border-transparent focus:outline-none focus:ring-2 ring-blue-400">
-              <option value="all" disabled selected>-ALL-</option>
-              {{-- fetch di js --}}
+              @foreach ($kelurahans as $kel)
+                <option value="{{ $kel->id }}" {{ ($kel->id == $mother->kelurahan_id ? 'selected' : '') }}>{{ $kel->kelurahan }}</option>
+              @endforeach
             </select>
           </div>
           <div class="w-1/4 py-2 px-4">
@@ -175,5 +181,17 @@
       </div>
     </div>
   </form>
+  <div class="relative flex py-4 items-center">
+    <div class="w-8 border-t-2 border-white"></div>
+    <span class="flex-shrink font-medium text-xl">Profil Anak</span>
+    <div class="flex-grow border-t-2 border-white"></div>
+  </div>
+  <a href="{{ url('/children/add/'.$mother->id) }}" class="ml-8 mb-5 max-w-min inline-block">
+    <div class="flex max-w-min bg-white rounded-xl hover:bg-gray-600 hover:text-white">
+      <div class="p-2 border border-gray-600 rounded-l-xl">+</div>
+      <div class="p-2 border border-gray-600 rounded-r-xl w-24">Add New</div>
+    </div>
+  </a>
   
+  @include('account.childrenProfile',['childrens'=>$mother->childrens])
 @endsection

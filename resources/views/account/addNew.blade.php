@@ -1,5 +1,5 @@
 @extends('app')
-@section('title','Creat Account')
+@section('title','Create Account')
 @section('container')
 @include('partials.titlePage',['title' => 'Create Account'])
   {{-- <div class="w-2/3 ml-8 bg-white filter drop-shadow-xl p-8 rounded-xl"> --}}
