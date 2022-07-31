@@ -61,9 +61,7 @@ class ReportController extends Controller
     public function viewChildrenDetail($id)
     {
         $data = $this->getData('data-children/by-child-id/'.$id);
-        // if ($data->message == 'Data Bulanan Belum Ada') {
-        //     return redirect('report');
-        // }
-        return view('report.detailAnak')->with('data',$data->data);
+        // dd($data);
+        return view('report.detailAnak')->with('children',$data->data);
     }
 }
