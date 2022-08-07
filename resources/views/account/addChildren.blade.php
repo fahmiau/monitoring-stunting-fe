@@ -10,7 +10,7 @@
         @csrf
         <input type="hidden" name="mother_id" id="mother_id" value="{{ $mother->id }}">
         <div class="w-1/2 py-2 px-4">
-          <label class="font-medium" for="name">Full Name</label>
+          <label class="font-medium" for="name">Nama Lengkap</label>
           <input
             class="block w-full my-1 rounded-md pl-4 text-lg py-2 shadow-md border border-transparent focus:outline-none focus:ring-2 ring-blue-400 @error('name') border-red-500 @enderror "
             type="text"
@@ -21,6 +21,16 @@
         </div>
       </div>
       <div id="alamat">
+        <div class="flex flex-wrap">
+          <div class="w-1/4 py-2 px-4">
+            <label class="font-medium" for="nik">NIK</label>
+            <input class="block w-full my-1 rounded-md pl-4 text-lg py-2 shadow-md border border-transparent focus:outline-none focus:ring-2 ring-blue-400" type="number" name="nik" id="nik" placeholder="NIK">
+          </div>
+          <div class="w-1/4 py-2 px-4">
+            <label class="font-medium" for="alamat">Alamat</label>
+            <input class="block w-full my-1 rounded-md pl-4 text-lg py-2 shadow-md border border-transparent focus:outline-none focus:ring-2 ring-blue-400" type="text" name="alamat" id="alamat" placeholder="Alamat">
+          </div>
+        </div>
         <div class="flex flex-wrap">
           <div class="w-1/4 py-2 px-4">
             <label class="font-medium" for="provinsi_id">Provinsi</label>

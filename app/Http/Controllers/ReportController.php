@@ -61,7 +61,16 @@ class ReportController extends Controller
     public function viewChildrenDetail($id)
     {
         $data = $this->getData('data-children/by-child-id/'.$id);
-        // dd($data);
-        return view('report.detailAnak')->with('children',$data->data);
+        $provinsi = $this->getData('provinsi/all');
+        $kota_kabupaten = $this->getData('kota-kabupaten/by-provinsi/'.$data->data->provinsi_id);
+        $kecamatan = $this->getData('kecamatan/by-kota-kabupaten/'.$data->data->kota_kabupaten_id);
+        $kelurahan = $this->getData('kelurahan/by-kecamatan/'.$data->data->kecamatan_id);
+
+        return view('report.detailAnak')
+            ->with('provinsis',$provinsi)
+            ->with('kota_kabupatens',$kota_kabupaten)
+            ->with('kecamatans',$kecamatan)
+            ->with('kelurahans',$kelurahan)
+            ->with('children',$data->data);
     }
 }

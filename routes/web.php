@@ -32,9 +32,11 @@ Route::post('/account/mother/update',[UserController::class, 'motherUpdate']);
 Route::post('/add-new',[UserController::class,'addNew']);
 
 Route::get('/children/add/{mother_id}',[ChildrenController::class,'addChildren']);
+Route::post('/children/add/store',[ChildrenController::class,'store']);
+Route::post('/children/update',[ChildrenController::class,'update']);
+Route::get('/children/detail/{id}',[ReportController::class,'viewChildrenDetail']);
 
 Route::get('/report',[ReportController::class,'viewReport']);
-Route::get('/detail-anak/{id}',[ReportController::class,'viewChildrenDetail']);
 
 Route::get('/article/list',[ArticleController::class,'index']);
 Route::get('/article/published',[ArticleController::class,'articleShowPublished']);

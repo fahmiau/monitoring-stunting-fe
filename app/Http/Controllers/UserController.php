@@ -140,10 +140,12 @@ class UserController extends Controller
     public function motherUpdate(Request $request)
     {
         try {
-            $response = $this->postData($request->input(),'register');
+            $response = $this->postData($request->input(),'mother/update/'.$request->id);
             // dd($response);
         } catch (\Exception $res) {
             // dd($res);
         }
+        // dd($response);
+        return redirect('/account/mother/'.$request->id);
     }
 }

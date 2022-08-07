@@ -1,6 +1,7 @@
 function clearSelectForm(element) {
   if (element.childElementCount > 1) {
     while (element.childElementCount > 1) {          
+      element.selectedIndex = 0
       element.removeChild(element.lastChild);
     }
   }

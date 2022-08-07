@@ -10,6 +10,13 @@ class ChildrenController extends Controller
 {
     private $uri = 'http://167.172.85.4:8080/api/';
     // private $uri = 'http://127.0.0.1:8000/api/';
+    public function headers()
+    {
+        return [
+            'Authorization' => 'Bearer ' . Session::get('user_token'),
+            'Accept' => 'application/json'];
+    }
+
     public function getData($endpoint)
     {
         $headers = [
@@ -21,6 +28,14 @@ class ChildrenController extends Controller
         $result = json_decode($response->getBody()->getContents());
         return $result;
 
+    }
+
+    public function postData($data,$endpoint)
+    {
+        $headers = $this->headers();
+        $client = new Client(['base_uri' => $this->uri]);
+        $response = $client->post($endpoint,['form_params' => $data, 'headers' => $headers]);
+        return json_decode($response->getBody()->getContents());
     }
 
     public function getChildrens($type,$id)
@@ -48,5 +63,19 @@ class ChildrenController extends Controller
             ->with('kecamatans',$kecamatan)
             ->with('kelurahans',$kelurahan)
             ->with('mother',$mother);
+    }
+
+    public function store(Request $request)
+    {
+        $data = $this->postData($request->input(),'children/add');
+
+        return redirect('/account/mother/'.$request->mother_id);
+    }
+
+    public function update(Request $request)
+    {
+        $data = $this->postData($request->input(),'children/update');
+
+        return redirect('/children/detail/'.$request->id);
     }
 }

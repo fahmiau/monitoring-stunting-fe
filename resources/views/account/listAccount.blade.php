@@ -30,9 +30,10 @@
               <td class="border px-4 py-1">
                 @foreach ($mother->childrens as $children)
                   <div>
-                    <a class="underline hover:no-underline" href="{{ url('/detail-anak/'.$children->id) }}">{{ $children->nama}}</a>
+                    <a class="underline hover:no-underline" href="{{ url('/children/detail/'.$children->id) }}">{{ $children->nama}}</a>
                   </div>
                 @endforeach
+              </td>
               <td class="border px-4 py-1">{{ $mother->alamat }}</td>
               <td class="border px-4 py-1 w-32">
                 <a class="block underline hover:no-underline text-blue-600 hover:text-black" href="{{ url('/account/mother/'.$mother->id) }}"><i class="fas fa-edit"></i>EDIT</a>

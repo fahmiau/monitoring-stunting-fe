@@ -77,7 +77,7 @@
                 <td class="border border-blue-400 p-2">
                   @foreach ($mother->childrens as $children)
                   <div>
-                    <a class="underline hover:no-underline" href="{{ url('/detail-anak/'.$children->id) }}">{{ $children->nama}}</a>
+                    <a class="underline hover:no-underline" href="{{ url('/children/detail/'.$children->id) }}">{{ $children->nama}}</a>
                   </div>
                   @endforeach
                 </td>

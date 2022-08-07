@@ -1,5 +1,10 @@
 
 @foreach ($childrens as $child)
+  @if ($loop->iteration == 2)
+  <div class="relative flex py-4 items-center">
+    <div class="flex-grow border-t-2 border-white"></div>
+  </div>
+  @endif
   <div class="ml-8 mr-12">
     <div class="flex flex-wrap items-end">
       <input type="hidden" name="mother_id" id="mother_id" value="{{ $mother->id }}">
