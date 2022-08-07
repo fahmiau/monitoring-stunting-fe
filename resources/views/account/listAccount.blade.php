@@ -3,8 +3,8 @@
 @section('container')
 @include('partials.titlePage',['title' => 'Daftar Akun Ibu'])
   {{-- <div class="w-2/3 ml-8 bg-white filter drop-shadow-xl p-8 rounded-xl"> --}}
-    <a href="{{ url('/add-new') }}" class="max-w-min inline-block">
-      <div class="ml-8 mb-5 flex max-w-min bg-white rounded-xl hover:bg-gray-600 hover:text-white">
+    <a href="{{ url('/add-new') }}" class="ml-8 mb-5 max-w-min inline-block">
+      <div class="flex max-w-min bg-white rounded-xl hover:bg-gray-600 hover:text-white">
         <div class="p-2 border border-gray-600 rounded-l-xl">+</div>
         <div class="p-2 border border-gray-600 rounded-r-xl w-24">Add New</div>
       </div>

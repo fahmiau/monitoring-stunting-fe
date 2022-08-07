@@ -201,12 +201,12 @@
   </a>
   
   <div class="ml-8 mb-8">
-    <table class="border-collapse border bg-white w-10/12">
+    <table class="border-collapse border bg-white w-3/4">
       <thead>
         <tr class="bg-blue-100">
-          <th class="px-4 py-1 border  w-12">No</th>
-          <th class="px-4 py-1 border  w-3/12">Nama Anak</th>
-          <th class="px-4 py-1 border  w-3/12">Anak Ke</th>
+          <th class="px-4 py-1 border  w-1/12">No</th>
+          <th class="px-4 py-1 border  w-4/12">Nama Anak</th>
+          <th class="px-4 py-1 border  w-1/12">Anak Ke</th>
           <th class="px-4 py-1 border  w-3/12">Status</th>
           <th class="px-4 py-1 border  w-2/12">Action</th>
           

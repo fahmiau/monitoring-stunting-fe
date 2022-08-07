@@ -3,8 +3,8 @@
 @section('container')
   @include('partials.titlePage',['title' => 'Article Manager'])
 
-  <a class="inline-block" href="{{ url('/article/create') }}">
-    <div class="cursor-pointer ml-8 mb-5 flex bg-white max-w-min rounded-xl hover:bg-gray-600 hover:text-white">
+  <a class="ml-8 mb-5 inline-block" href="{{ url('/article/create') }}">
+    <div class="flex bg-white max-w-min rounded-xl hover:bg-gray-600 hover:text-white">
       <div class="p-2 border border-gray-600 rounded-l-xl">+</div>
       <div class="p-2 border border-gray-600 rounded-r-xl w-24">Add New</div>
     </div>
