@@ -135,7 +135,11 @@
         </div>
         </div>
         <div class="mt-4 ml-4">
-          <button class="font-medium text-lg border-2 border-secondary bg-[#06CA51] hover:bg-secondary hover:text-primary py-2 px-10 rounded-md object-center transform duration-300" type="submit">Update Anak</button>
+          <button
+            class="font-medium text-lg border-2 border-secondary bg-[#06CA51] hover:bg-secondary hover:text-primary py-2 px-10 rounded-md object-center transform duration-300"
+            type="submit">
+            Update Anak
+          </button>
         </div>
       </div>
     </form>
@@ -144,24 +148,92 @@
       <input type="hidden" value="{{ $children->id }}" name="childrenId" id="childrenId">
       <input type="hidden" name="gender" id="gender" value="{{ ($children->jenis_kelamin == 'Laki-laki') ? 'boy' : 'girl' }}">
       <h2 class="text-lg font-medium text-center mb-3">Data Bulanan</h2>
-      <table class="border-separate border table-fixed mb-4">
+      <table id="data-children-table" class="border-collapse border table-fixed ml-4 mb-4 w-11/12">
         <thead>
-          <tr class="border border-blue-600">
-            <th class="px-4 border border-blue-600 w-1/4 ">Bulan Ke -</th>
-            <th class="px-4 border border-blue-600 ">Tanggal</th>
-            <th class="px-4 border border-blue-600 ">PB</th>
-            <th class="px-4 border border-blue-600 ">BB</th>
+          <tr class="border border-blue-600 bg-blue-100">
+            <th class="px-4 py-1 border-2 border-blue-600 w-1/12">Bulan Ke -</th>
+            <th class="px-4 py-1 border-2 border-blue-600 w-3/12">Tanggal</th>
+            <th class="px-4 py-1 border-2 border-blue-600 w-2/12">Tempat</th>
+            <th class="px-4 py-1 border-2 border-blue-600 w-2/12">PB</th>
+            <th class="px-4 py-1 border-2 border-blue-600 w-2/12">BB</th>
+            <th class="px-4 py-1 border-2 border-blue-600 w-2/12">Action</th>
           </tr>
         </thead>
         <tbody>
-          @foreach ($children->data_childrens as $data_children)              
-          <tr>
-            <td class="px-2 border border-blue-400">{{ $data_children->bulan_ke }}</td>
-            <td class="px-2 border border-blue-400">{{ $data_children->tanggal }}</td>
-            <td class="px-2 border border-blue-400">{{ $data_children->panjang_badan }} cm</td>
-            <td class="px-2 border border-blue-400">{{ $data_children->berat_badan }} kg</td>
-          </tr>
-          @endforeach
+          @if($children->data_childrens)
+            @foreach ($children->data_childrens as $data_children)              
+              <tr id="row_{{ $loop->iteration }}">
+                <td class="px-2 py-1 border-2 border-blue-400">
+                  <input
+                    class="w-full rounded-md border text-lg py-2 shadow-md focus:outline-none focus:ring-2 ring-blue-400"
+                    type="number"
+                    name="bulan_ke_{{ $loop->iteration }}"
+                    id="bulan_ke_{{ $loop->iteration }}"
+                    value="{{ $data_children->bulan_ke }}">
+                </td>
+                <td class="px-2 py-1 border-2 border-blue-400">
+                  <input 
+                    class="w-full rounded-md border text-lg py-2 shadow-md focus:outline-none focus:ring-2 ring-blue-400"
+                    type="date"
+                    name="tanggal_{{ $loop->iteration }}"
+                    id="tanggal_{{ $loop->iteration }}" placeholder="Tanggal"
+                    value="{{ $data_children->tanggal }}">
+                </td>
+                <td class="px-2 py-1 border-2 border-blue-400">
+                  <input 
+                    class="w-full rounded-md border text-lg py-2 shadow-md focus:outline-none focus:ring-2 ring-blue-400"
+                    type="text"
+                    name="tempat_{{ $loop->iteration }}"
+                    id="tempat_{{ $loop->iteration }}" placeholder="Tempat"
+                    value="{{ $data_children->tempat }}">
+                </td>
+                <td class="px-2 py-1 border-2 border-blue-400">
+                  <input
+                    class="w-3/4 rounded-md border text-lg py-2 shadow-md focus:outline-none focus:ring-2 ring-blue-400"
+                    type="number"
+                    min="0"
+                    step="0.1"
+                    name="panjang_badan_{{ $loop->iteration }}"
+                    id="panjang_badan_{{ $loop->iteration }}"
+                    value="{{ $data_children->panjang_badan }}">
+                  cm
+                </td>
+                <td class="px-2 py-1 border-2 border-blue-400">
+                  <input
+                    class="w-3/4 rounded-md border text-lg py-2 shadow-md focus:outline-none focus:ring-2 ring-blue-400"
+                    type="number"
+                    min="0"
+                    step="0.1"
+                    name="berat_badan_{{ $loop->iteration }}"
+                    id="berat_badan_{{ $loop->iteration }}"
+                    value="{{ $data_children->berat_badan }}"/>
+                  kg
+                </td>
+                <td class="p-2 border-2 border-blue-400">
+                  <button
+                    id="data_children_update_btn_{{ $loop->iteration }}"
+                    onclick="updateDataChildren({{ $loop->iteration }})"
+                    class="w-2/3 font-medium border-2 border-secondary bg-[#aacfff] hover:bg-secondary hover:text-primary p-2 rounded-md object-center transform duration-300">
+                    EDIT
+                  </button>
+                  <button
+                    onclick="deleteDataChildren({{ $data_children->id }})"
+                    class=" bg-red-600 py-2 px-2 border-secondary border-2 rounded-md text-white hover:text-black" href="">
+                    <i class="fas fa-trash-alt"></i>
+                  </button>
+                </td>
+              </tr>
+              @if ($loop->last)
+                @include('report.lastRow',[
+                  'bulan_ke'=>$data_children->bulan_ke+1,
+                  'last_row'=>$loop->iteration])
+              @endif
+            @endforeach
+          @else
+            @include('report.lastRow',[
+              'bulan_ke'=>1,
+              'last_row'=>1])
+          @endif
         </tbody>
       </table>
       <div class="flex flex-wrap">
@@ -221,6 +293,33 @@
     </div>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js"></script>
+  <script src="{{ asset('js/data-children.js') }}"></script>
+  <script>
+    function deleteDataChildren(id) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Peringatan !',
+        text: 'Yakin akan menghapus?',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Hapus data',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          fetch('http://167.172.85.4/data-children/delete/'+id)
+            .then(response => response.text())
+            .then((res) => {
+              if (res == 'success') {
+                Swal.fire('Data Berhasil Dihapus!','','success')
+                  .then(()=>{
+                    location.reload()
+                  })
+              }
+            })
+        }
+      })
+    }
+  </script>
   <script>
   var gender = document.getElementById('gender').value
   var childrenId = parseInt(document.getElementById('childrenId').value)
@@ -231,7 +330,6 @@
     fetch(url)
     .then(response => response.json())
     .then(response => {
-      console.log(response.data_children);
       const labels = response.months
       const data = {
         labels: labels,

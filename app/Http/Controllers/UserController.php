@@ -148,4 +148,17 @@ class UserController extends Controller
         // dd($response);
         return redirect('/account/mother/'.$request->id);
     }
+
+    public function motherDelete($id)
+    {
+        $headers = $this->headers();
+        $client = new Client(['base_uri' => $this->uri]);
+        $response = $client->delete('mother/delete/'.$id,['headers' => $headers]);
+        $res =  json_decode($response->getBody()->getContents());
+        if ($res->message == 'Data Ibu Berhasil Dihapus') {
+            return 'success';
+        } else{
+            return 'failed';
+        }
+    }
 }

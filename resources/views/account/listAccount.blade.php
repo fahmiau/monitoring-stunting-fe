@@ -36,8 +36,17 @@
               </td>
               <td class="border px-4 py-1">{{ $mother->alamat }}</td>
               <td class="border px-4 py-1 w-32">
-                <a class="block underline hover:no-underline text-blue-600 hover:text-black" href="{{ url('/account/mother/'.$mother->id) }}"><i class="fas fa-edit"></i>EDIT</a>
-                <a class="block underline hover:no-underline text-red-600 hover:text-black" href=""><i class="fas fa-trash-alt"></i>DELETE</a>
+                <a
+                  class="inline-block text-center w-2/3 font-medium border-2 border-secondary bg-[#aacfff] hover:bg-secondary hover:text-primary p-2 rounded-md object-center transform duration-300"
+                  href="{{ url('/account/mother/'.$mother->id) }}">
+                  EDIT
+                </a>
+                <button 
+                  onclick="deleteAccount({{ $mother->id }})"
+                  class="bg-red-600 py-2 px-2 border-secondary border-2 rounded-md text-white hover:text-black" 
+                  >
+                  <i class="fas fa-trash-alt"></i>
+                </button>
               </td>
             </tr>
           @endforeach
@@ -46,3 +55,29 @@
     </div>
     {{-- </div> --}}
 @endsection
+<script>
+  function deleteAccount(id) {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Peringatan !',
+      text: 'Yakin akan menghapus?',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Hapus data',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch('http://167.172.85.4/account/mother/delete/'+id)
+          .then(response => response.text())
+          .then((res) => {
+            if (res == 'success') {
+              Swal.fire('Data Berhasil Dihapus!','','success')
+                .then(()=>{
+                  location.reload()
+                })
+            }
+          })
+      }
+    })
+  }
+</script>

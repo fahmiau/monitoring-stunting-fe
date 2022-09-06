@@ -30,11 +30,18 @@ Route::get('/add-new',[UserController::class,'addView']);
 Route::get('/account/mother/{mother_id}',[UserController::class,'showAccount']);
 Route::post('/account/mother/update',[UserController::class, 'motherUpdate']);
 Route::post('/add-new',[UserController::class,'addNew']);
+Route::get('/account/mother/delete/{id}',[UserController::class,'motherDelete']);
 
 Route::get('/children/add/{mother_id}',[ChildrenController::class,'addChildren']);
 Route::post('/children/add/store',[ChildrenController::class,'store']);
 Route::post('/children/update',[ChildrenController::class,'update']);
 Route::get('/children/detail/{id}',[ReportController::class,'viewChildrenDetail']);
+
+Route::get('/childrens/{type}/{id}',[ChildrenController::class,'getChildrens']);
+Route::get('/status-stunting/{type}/{id}',[ChildrenController::class,'getStatusStunting']);
+Route::get('/data-children/delete/{id}',[ChildrenController::class,'deleteDataChildren']);
+Route::post('/data-children/add',[ChildrenController::class,'addDataChildren']);
+Route::post('/data-children/update',[ChildrenController::class,'updateDataChildren']);
 
 Route::get('/report',[ReportController::class,'viewReport']);
 
@@ -53,8 +60,6 @@ Route::post('/article/image-upload',[ArticleController::class,'uploadImage']);
 // Route::get('/childrens/kota_kabupaten/{id}',[ChildrenController::class,'getByKotaKabupaten']);
 // Route::get('/childrens/provinsi/{id}',[ChildrenController::class,'getByProvinsi']);
 
-Route::get('/childrens/{type}/{id}',[ChildrenController::class,'getChildrens']);
-Route::get('/status-stunting/{type}/{id}',[ChildrenController::class,'getStatusStunting']);
 
 // Route::get('/article',[ReportController::class,'viewReport']);
 

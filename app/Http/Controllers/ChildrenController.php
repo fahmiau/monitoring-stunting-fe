@@ -78,4 +78,31 @@ class ChildrenController extends Controller
 
         return redirect('/children/detail/'.$request->id);
     }
+
+    public function addDataChildren(Request $request)
+    {
+        // return $request->input();
+        $data = $this->postData($request->input(),'data-children/add');
+        return $data;
+    }
+
+    public function updateDataChildren(Request $request)
+    {
+        $data = $this->postData($request->input(),'data-children/update');
+
+        return $data;
+    }
+
+    public function deleteDataChildren($id)
+    {
+        $headers = $this->headers();
+        $client = new Client(['base_uri' => $this->uri]);
+        $response = $client->delete('data-children/delete/'.$id,['headers' => $headers]);
+        $res =  json_decode($response->getBody()->getContents());
+        if ($res->message == 'Data Berhasil Dihapus') {
+            return 'success';
+        } else{
+            return 'failed';
+        }
+    }
 }

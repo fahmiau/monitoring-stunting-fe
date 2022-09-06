@@ -61,7 +61,7 @@ class ArticleController extends Controller
         try {
             $data = $this->postData($validated,'article/store');
         } catch (\Exception $res) {
-            dd($res->getMessage());
+            // dd($res->getMessage());
         }
         // dd($data->data->slug);
         return redirect()->route('articleEdit',['slug' => $data->data->slug]);
@@ -121,7 +121,11 @@ class ArticleController extends Controller
         $headers = $this->headers();
         $client = new Client(['base_uri' => $this->url]);
         $response = $client->delete('article/delete/'.$slug,['headers' => $headers]);
-        $result =  $response->getBody()->getContents();
-        return redirect('/article/list');
+        $res =  json_decode($response->getBody()->getContents());
+        if ($res->message == 'Artikel Berhasil Dihapus') {
+            return 'success';
+        } else{
+            return 'failed';
+        }
     }
 }

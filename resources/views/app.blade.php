@@ -7,7 +7,7 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <script src="{!! mix('js/app.js') !!}"></script>
-
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <title>Cegah Stunting - @yield('title')</title>
         <link rel="shortcut icon" href="{{ asset('img/icons/logo_kecil.png') }}" type="image/x-icon">
         {{-- <link rel="icon" href="{{ asset('img/icons/cegah_stunting_logo.png') }}" type="image/x-icon"> --}}
