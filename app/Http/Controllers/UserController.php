@@ -119,7 +119,10 @@ class UserController extends Controller
         } catch (\Exception $res) {
             // dd($res);
         }
-        return redirect()->route('viewAccount');
+        return redirect()->route('viewAccount')->with('notification',[
+            'type'=>'success',
+            'message'=>'Akun Berhasil Ditambahkan'
+        ]);
     }
 
     public function showAccount($mother_id)
@@ -146,7 +149,10 @@ class UserController extends Controller
             // dd($res);
         }
         // dd($response);
-        return redirect('/account/mother/'.$request->id);
+        return redirect('/account/mother/'.$request->id)->with('notification',[
+            'type'=>'success',
+            'message'=>'Data Berhasil Diubah'
+        ]);
     }
 
     public function motherDelete($id)

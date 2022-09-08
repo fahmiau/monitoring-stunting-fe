@@ -64,7 +64,10 @@ class ArticleController extends Controller
             // dd($res->getMessage());
         }
         // dd($data->data->slug);
-        return redirect()->route('articleEdit',['slug' => $data->data->slug]);
+        return redirect()->route('articleEdit',['slug' => $data->data->slug])->with('notification',[
+            'type'=>'success',
+            'message'=>'Artikel Berhasil Ditambahkan'
+        ]);
     }
 
     public function show($slug)
@@ -100,7 +103,10 @@ class ArticleController extends Controller
             // dd($res->getMessage());
         }
         // dd($data);
-        return redirect()->route('articleEdit',['slug' => $data->slug]);
+        return redirect()->route('articleEdit',['slug' => $data->slug])->with('notification',[
+            'type'=>'success',
+            'message'=>'Artikel Berhasil Diubah'
+        ]);
     }
 
     public function articleShowPublished()

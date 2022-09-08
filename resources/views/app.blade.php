@@ -20,11 +20,22 @@
         {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js" integrity="sha256-xKeoJ50pzbUGkpQxDYHD7o7hxe0LaOGeguUidbq6vis=" crossorigin="anonymous"></script> --}}
         
     </head>
-    <body  class="bg-secondary font-sans leading-normal tracking-normal mt-12">
+    <body
+        @if (Session::has('notification'))
+            data-notification-type="{{ Session::get('notification')['type'] }}"
+            data-notification-message="{{ Session::get('notification')['message'] }}"
+        @endif
+        class="bg-secondary font-sans leading-normal tracking-normal mt-12">
         
     @include('partials.nav')
     <div class="main-content flex-1 bg-primary mt-12 md:mt-2 pb-24 md:pb-5">
         @yield('container')
     </div>
     </body>
+    <script defer>
+        var notification = document.body.dataset;
+        if (document.body.dataset.notificationType) {
+            Swal.fire(notification.notificationMessage,'',notification.notificationType)
+        }
+    </script>
 </html>

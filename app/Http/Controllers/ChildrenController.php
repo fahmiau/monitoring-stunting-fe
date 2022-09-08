@@ -69,14 +69,20 @@ class ChildrenController extends Controller
     {
         $data = $this->postData($request->input(),'children/add');
 
-        return redirect('/account/mother/'.$request->mother_id);
+        return redirect('/account/mother/'.$request->mother_id)->with('notification',[
+            'type'=>'success',
+            'message'=>'Data Anak Berhasil Ditambahkan'
+        ]);
     }
 
     public function update(Request $request)
     {
         $data = $this->postData($request->input(),'children/update');
 
-        return redirect('/children/detail/'.$request->id);
+        return redirect('/children/detail/'.$request->id)->with('notification',[
+            'type'=>'success',
+            'message'=>'Data Anak Berhasil Diubah'
+        ]);
     }
 
     public function addDataChildren(Request $request)

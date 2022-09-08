@@ -29,8 +29,8 @@ async function newDataChildren(last_row_id) {
     body: JSON.stringify(data)
   })
   var result = await response.json()
-  console.log(result)
-  location.reload()
+  Swal.fire('Data Anak Berhasil Ditambah','','success')
+    .then(() => location.reload())
   // var table = document.getElementById('data-children-table')
   // var last_row = document.getElementById('row_'+last_row_id)
   // var new_row = table.insertRow((last_row_id == 1) ? 0 : 1)
@@ -130,9 +130,11 @@ async function updateDataChildren(id) {
     body: JSON.stringify(data)
   })
   var result = await response.json()
-  document.getElementById('tanggal_'+id).value = result.data.tanggal
-  document.getElementById('bulan_ke_'+id).value = result.data.bulan_ke
-  document.getElementById('tempat_'+id).value = result.data.tempat
-  document.getElementById('berat_badan_'+id).value = result.data.berat_badan
-  document.getElementById('panjang_badan_'+id).value = result.data.panjang_badan
+  Swal.fire('Data Anak Berhasil Diubah','','success')
+    .then(() => location.reload())
+  // document.getElementById('tanggal_'+id).value = result.data.tanggal
+  // document.getElementById('bulan_ke_'+id).value = result.data.bulan_ke
+  // document.getElementById('tempat_'+id).value = result.data.tempat
+  // document.getElementById('berat_badan_'+id).value = result.data.berat_badan
+  // document.getElementById('panjang_badan_'+id).value = result.data.panjang_badan
 }
