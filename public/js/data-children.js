@@ -1,3 +1,5 @@
+// const url = 'http://127.0.0.1:8001'
+const url = 'http://167.172.85.4'
 var rows = document.querySelectorAll("[id^=row_]")
 var buttons = document.querySelectorAll('[id^=data_children_update_btn_')
 async function newDataChildren(last_row_id) {
@@ -17,7 +19,7 @@ async function newDataChildren(last_row_id) {
   // })
   // console.log(data)
   // console.log(JSON.stringify(data))
-  var response = await fetch('http://167.172.85.4/data-children/add',{
+  var response = await fetch(url+'/data-children/add',{
     method: 'POST',
     headers: {
       'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content,
@@ -118,7 +120,7 @@ async function updateDataChildren(id) {
     berat_badan : document.getElementById('berat_badan_'+id).value,
     panjang_badan : document.getElementById('panjang_badan_'+id).value
   }
-  var response = await fetch('http://167.172.85.4/data-children/update',{
+  var response = await fetch(url+'/data-children/update',{
     method: 'POST',
     headers: {
       'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content,

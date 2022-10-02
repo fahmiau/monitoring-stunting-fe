@@ -1,3 +1,5 @@
+// const url = 'http://127.0.0.1:8001'
+const url = 'http://167.172.85.4'
 function clearSelectForm(element) {
   while (element.childElementCount > 1) {          
     element.removeChild(element.lastChild);
@@ -47,7 +49,7 @@ function getChildrenData(type,id) {
   graphStatus(type,id)
   axios({
     method : 'get',
-    url : 'http://167.172.85.4/childrens/'+type+'/'+id,
+    url : url+'/childrens/'+type+'/'+id,
     headers : {
       'Accept' : 'application/json'
     }
@@ -58,7 +60,7 @@ function getChildrenData(type,id) {
       var childrensHtml = ''
       mother.childrens.forEach(children => {
           childrensHtml += '<div>'+
-          '<a class="underline hover:no-underline" href="http://167.172.85.4/detail-anak/'+children.id+'">'+children.nama+'</a>'+
+          '<a class="underline hover:no-underline" href="'+url+'/children/detail/'+children.id+'">'+children.nama+'</a>'+
           '</div>'
         })
       var statusHtml = ''
@@ -153,7 +155,7 @@ function kelurahan(val) {
 function graphStatus(type,id) {
   axios({
     method : 'get',
-    url : 'http://167.172.85.4/status-stunting/'+type+'/'+id,
+    url : url+'/status-stunting/'+type+'/'+id,
     headers : {
       'Accept' : 'application/json'
     }

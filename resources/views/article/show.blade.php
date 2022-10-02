@@ -5,12 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+  <style>
+    @media only screen and (max-width: 600px) {
+      .img-responsive{ max-width: 20rem;}
+    }
+  </style>
   <title>Artikel</title>
 </head>
 <body class="bg-primary">
-  <div class="main-content flex-1 bg-primary mt-12 md:mt-2 pb-24 md:pb-5">
-    <div class="p-8 ml-4">
-      <h2 class="text-2xl text-center font-medium my-8">{{ $article->title }}</h2>
+  <div class="main-content flex flex-col items-center md:pb-5">
+    <div class="p-8 max-w-screen-sm bg-white rounded-lg shadow-md">
+      <h2 class="text-2xl text-center font-medium mb-4">{{ $article->title }}</h2>
       <div>
         <article>
           {!! $article->body !!}

@@ -14,10 +14,9 @@
           editor.save();
         });
       },
-      content_css: '/css/app.css',
-      body_class: 'p-8',
+      content_css: '/css/tinycss.css',
+      body_class: 'px-8 py-4',
       formats: {
-        // Changes the default format for the bold button to produce a span with a bold class
         bold: { inline: 'span', classes: 'font-bold' },
         h1: { block: 'h1', classes: 'font-bold text-6xl'},
         h2: { block: 'h2', classes: 'font-bold text-5xl'},
@@ -79,6 +78,8 @@
       <div class="w-11/12 min-h-1/2">
         <textarea name="body" id="body">Isi Artikel</textarea>
       </div>
+      <input type="hidden" name="image_url" id="image_url" value="">
+      <input type="hidden" name="image_name" id="image_name" value="">
 
       <label class="block font-medium mt-4" for="penulis">Penulis</label>
       <input class="w-1/4" type="text" name="author">
@@ -95,4 +96,13 @@
     </form>
   
   </div>
+  <script defer>
+    document.addEventListener('click',()=>{
+      var img = tinyMCE.get('body').dom.select('img')[0]
+      if (img) {
+        document.getElementById('image_url').value = img.dataset.mceSrc
+        document.getElementById('image_name').value = img.dataset.mceSrc.replace('/storage/article_images/','')
+      }
+    })
+  </script>
 @endsection

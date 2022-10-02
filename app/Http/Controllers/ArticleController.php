@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use GuzzleHttp\Client;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 class ArticleController extends Controller
@@ -55,7 +56,9 @@ class ArticleController extends Controller
 
         $validated += [
             'published' => $request->published,
-            'author' => $request->author
+            'author' => $request->author,
+            'image_url' => $request->image_url,
+            'image_name' => $request->image_name
         ];
         // dd($validated);
         try {
@@ -79,28 +82,30 @@ class ArticleController extends Controller
 
     public function uploadImage(Request $request)
     {
-        $fileName=$request->file('file')->getClientOriginalName();
-        $path=$request->file('file')->storeAs('article_images', $fileName, 'public');
+        $fileName = $request->file('file')->getClientOriginalName();
+        $fileNameNoSpace = Str::replace(' ','-',$fileName);
+        $path = $request->file('file')->storeAs('article_images', $fileNameNoSpace, 'public');
         return response()->json(['location'=>"/storage/$path"]);
     }
 
     public function update($slug, Request $request)
     {
-        // ddd($request->request);
         $validated = $request->validate([
             'title' => 'required',
             'body' => 'required',
+            
         ]);
-
+        
         $validated += [
             'published' => $request->published,
-            'author' => $request->author
+            'author' => $request->author,
+            'image_url' => $request->image_url,
+            'image_name' => $request->image_name
         ];
-        // dd($validated);
         try {
             $data = $this->postData($validated,'article/update/'.$slug);
         } catch (\Exception $res) {
-            // dd($res->getMessage());
+
         }
         // dd($data);
         return redirect()->route('articleEdit',['slug' => $data->slug])->with('notification',[
@@ -112,7 +117,6 @@ class ArticleController extends Controller
     public function articleShowPublished()
     {
         $articles = $this->getData('article/published');
-
         return view('article.index')->with('articles',$articles);
     }
 
