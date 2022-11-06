@@ -38,6 +38,7 @@ Route::post('/children/update',[ChildrenController::class,'update']);
 Route::get('/children/delete/{id}',[ChildrenController::class,'destroy']);
 Route::get('/childrens/{type}/{id}',[ChildrenController::class,'getChildrens']);
 Route::get('/status-stunting/{type}/{id}',[ChildrenController::class,'getStatusStunting']);
+Route::post('/status-stunting/update',[ChildrenController::class,'updateStatusStunting']);
 Route::get('/data-children/delete/{id}',[ChildrenController::class,'deleteDataChildren']);
 Route::post('/data-children/add',[ChildrenController::class,'addDataChildren']);
 Route::post('/data-children/update',[ChildrenController::class,'updateDataChildren']);

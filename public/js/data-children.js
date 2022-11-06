@@ -140,3 +140,23 @@ async function updateDataChildren(id) {
   // document.getElementById('berat_badan_'+id).value = result.data.berat_badan
   // document.getElementById('panjang_badan_'+id).value = result.data.panjang_badan
 }
+
+async function updateStatusChildren() {
+  var data = {
+    id : document.getElementById('status_children_id').value,
+    status_children : document.getElementById('status_children')
+  }
+  var response = await fetch(url+'/status-stunting/update',{
+    method: 'POST',
+    headers: {
+      'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content,
+      "Content-Type": "application/json",
+      "Accept": "application/json, text-plain, */*",
+      "X-Requested-With": "XMLHttpRequest"
+    },
+    credentials: "same-origin",
+    body: JSON.stringify(data)
+  })
+  var result = await response.json()
+    .then(console.log(result))
+}

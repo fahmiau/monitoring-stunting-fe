@@ -124,4 +124,11 @@ class ChildrenController extends Controller
             return 'failed';
         }
     }
+
+    public function updateStatusStunting(Request $request)
+    {
+        $data = $this->postData($request->input(),'data-children/update');
+
+        return $data;
+    }
 }
