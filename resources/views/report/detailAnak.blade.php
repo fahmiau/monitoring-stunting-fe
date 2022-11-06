@@ -42,7 +42,9 @@
                 onchange="findKotaKab(this.value)" 
                 name="provinsi_id" 
                 id="provinsi_id" 
-                class="block w-full my-1 rounded-md pl-4 text-lg py-2 shadow-md border border-transparent focus:outline-none focus:ring-2 ring-blue-400">
+                class="block w-full my-1 rounded-md pl-4 text-lg py-2 shadow-md border border-transparent focus:outline-none focus:ring-2 ring-blue-400"
+                >
+                <option value="all" disabled>-ALL-</option>
                 @foreach ($provinsis as $provinsi)
                   <option value="{{ $provinsi->id }}" {{ ($provinsi->id == $children->provinsi_id) ? 'selected' : '' }}>{{ $provinsi->provinsi }}</option>
                 @endforeach
@@ -55,7 +57,9 @@
                 onchange="findKecamatan(this.value)"
                 name="kota_kabupaten_id" 
                 id="kota_kabupaten_id"
-                class="block w-full my-1 rounded-md pl-4 text-lg py-2 shadow-md border border-transparent focus:outline-none focus:ring-2 ring-blue-400">
+                class="block w-full my-1 rounded-md pl-4 text-lg py-2 shadow-md border border-transparent focus:outline-none focus:ring-2 ring-blue-400"
+                >
+                <option value="all" disabled>-ALL-</option>
                 @foreach ($kota_kabupatens as $kota_kab)
                   <option value="{{ $kota_kab->id }}" {{ ($kota_kab->id == $children->kota_kabupaten_id) ? 'selected' : ''}}>{{ $kota_kab->kota_kabupaten }}</option>
                 @endforeach
@@ -67,7 +71,9 @@
                 onchange="findKelurahan(this.value)" 
                 name="kecamatan_id" 
                 id="kecamatan_id" 
-                class="block w-full my-1 rounded-md pl-4 text-lg py-2 shadow-md border border-transparent focus:outline-none focus:ring-2 ring-blue-400">
+                class="block w-full my-1 rounded-md pl-4 text-lg py-2 shadow-md border border-transparent focus:outline-none focus:ring-2 ring-blue-400"
+                >
+                <option value="all" disabled>-ALL-</option>
                 @foreach ($kecamatans as $kec)
                   <option value="{{ $kec->id }}" {{ ($kec->id == $children->kecamatan_id ? 'selected' : '') }}>{{ $kec->kecamatan }}</option>
                 @endforeach
@@ -78,7 +84,9 @@
               <select 
                 name="kelurahan_id" 
                 id="kelurahan_id" 
-                class="block w-full my-1 rounded-md pl-4 text-lg py-2 shadow-md border border-transparent focus:outline-none focus:ring-2 ring-blue-400">
+                class="block w-full my-1 rounded-md pl-4 text-lg py-2 shadow-md border border-transparent focus:outline-none focus:ring-2 ring-blue-400"
+                >
+                <option value="all" disabled>-ALL-</option>
                 @foreach ($kelurahans as $kel)
                   <option value="{{ $kel->id }}" {{ ($kel->id == $children->kelurahan_id ? 'selected' : '') }}>{{ $kel->kelurahan }}</option>
                 @endforeach
@@ -236,11 +244,11 @@
           @endif
         </tbody>
       </table>
-      <div class="flex flex-wrap">
-        <div class="w-1/4 py-2 px-4">
-          <label class="font-medium" for="status_children">Status Anak</label>
+      <div class="flex flex-wrap gap-x-4 w-full py-2 px-4">
+          <input type="hidden" name="status_children_id" id="status_children_id" value="{{ $children->status_children->id }}">
+          <label class="font-medium w-full" for="status_children">Status Anak</label>
           <select
-            class="block w-full my-1 rounded-md pl-4 text-lg py-2 shadow-md border border-transparent focus:outline-none focus:ring-2 ring-blue-400"
+            class="inline-block w-1/4 rounded-md pl-4 text-lg py-2 shadow-md border border-transparent focus:outline-none focus:ring-2 ring-blue-400"
             type="number" name="status_children" id="status_children">
             @if ($children->status_children == null)
               <option value="" selected>Belum Ada</option>
@@ -274,8 +282,13 @@
                 Diatas Standar
               </option>
             @endif
-          </select>
-        </div>
+          </select>  
+          <button
+            class="inline-block font-medium border-2 h-11/12 px-4 border-secondary bg-[#06CA51] hover:bg-secondary hover:text-primary rounded-md object-center transform duration-300"
+            id="data_children_add" name="add-data"
+            onclick="newDataChildren()">
+            Ubah Status
+          </button>
       </div>
     </div>
     
@@ -294,6 +307,39 @@
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js"></script>
   <script src="{{ asset('js/data-children.js') }}"></script>
+  <script src="{{ asset('/js/alamat.js') }}"></script>
+  <script>
+    var inputs = document.querySelectorAll('input')
+    inputs.forEach(input => {
+      input.onchange = function (){
+        input.classList.add("border-red-500","border-2");
+        let label = input.previousElementSibling;
+        label.classList.add("text-red-500","font-bold")
+      };
+    });
+    
+    var selects = document.querySelectorAll('select')
+    selects.forEach(select => {
+      select.onchange = function (){
+        select.classList.add("border-red-500","border-2");
+        let label = select.previousElementSibling;
+        label.classList.add("text-red-500","font-bold")
+        switch (select.getAttribute("id")) {
+          case "provinsi_id":
+            findKotaKab(select.value)
+          break;
+          case "kota_kabupaten_id":
+            findKecamatan(select.value)
+          break;
+          case "kecamatan_id":
+            findKelurahan(select.value)
+          break;
+          default:
+            break;
+        }
+      };
+    });
+  </script>
   <script>
     function deleteDataChildren(id) {
       Swal.fire({
