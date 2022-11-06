@@ -286,7 +286,7 @@
           <button
             class="inline-block font-medium border-2 h-11/12 px-4 border-secondary bg-[#06CA51] hover:bg-secondary hover:text-primary rounded-md object-center transform duration-300"
             id="data_children_add" name="add-data"
-            onclick="newDataChildren()">
+            onclick="updateStatusChildren()">
             Ubah Status
           </button>
       </div>

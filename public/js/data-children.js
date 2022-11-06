@@ -144,7 +144,7 @@ async function updateDataChildren(id) {
 async function updateStatusChildren() {
   var data = {
     id : document.getElementById('status_children_id').value,
-    status_children : document.getElementById('status_children')
+    status_children : document.getElementById('status_children').value
   }
   var response = await fetch(url+'/status-stunting/update',{
     method: 'POST',
@@ -158,5 +158,10 @@ async function updateStatusChildren() {
     body: JSON.stringify(data)
   })
   var result = await response.json()
-    .then(console.log(result))
+    .then((res) => {
+      if (res.message == 'Data Berhasil Diubah') {
+        Swal.fire('Status Anak Berhasil Diubah','','success')
+        .then(() => location.reload())
+      }
+    })
 }

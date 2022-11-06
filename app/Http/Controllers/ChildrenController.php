@@ -127,7 +127,7 @@ class ChildrenController extends Controller
 
     public function updateStatusStunting(Request $request)
     {
-        $data = $this->postData($request->input(),'data-children/update');
+        $data = $this->postData($request->input(),'status-stunting/update');
 
         return $data;
     }
