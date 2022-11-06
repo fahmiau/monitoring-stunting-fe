@@ -35,14 +35,14 @@ Route::get('/account/mother/delete/{id}',[UserController::class,'motherDelete'])
 Route::get('/children/add/{mother_id}',[ChildrenController::class,'addChildren']);
 Route::post('/children/add/store',[ChildrenController::class,'store']);
 Route::post('/children/update',[ChildrenController::class,'update']);
-Route::get('/children/detail/{id}',[ReportController::class,'viewChildrenDetail']);
-
+Route::get('/children/delete/{id}',[ChildrenController::class,'destroy']);
 Route::get('/childrens/{type}/{id}',[ChildrenController::class,'getChildrens']);
 Route::get('/status-stunting/{type}/{id}',[ChildrenController::class,'getStatusStunting']);
 Route::get('/data-children/delete/{id}',[ChildrenController::class,'deleteDataChildren']);
 Route::post('/data-children/add',[ChildrenController::class,'addDataChildren']);
 Route::post('/data-children/update',[ChildrenController::class,'updateDataChildren']);
 
+Route::get('/children/detail/{id}',[ReportController::class,'viewChildrenDetail']);
 Route::get('/report',[ReportController::class,'viewReport']);
 
 Route::get('/article/list',[ArticleController::class,'index']);
