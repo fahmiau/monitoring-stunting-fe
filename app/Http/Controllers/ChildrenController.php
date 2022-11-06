@@ -111,4 +111,17 @@ class ChildrenController extends Controller
             return 'failed';
         }
     }
+
+    function destroy($id)
+    {
+        $headers = $this->headers();
+        $client = new Client(['base_uri' => $this->uri]);
+        $response = $client->delete('children/delete/'.$id,['headers' => $headers]);
+        $res =  json_decode($response->getBody()->getContents());
+        if ($res->message == 'Data Anak Berhasil Dihapus') {
+            return 'success';
+        } else{
+            return 'failed';
+        }
+    }
 }
