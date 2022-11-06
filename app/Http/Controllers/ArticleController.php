@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Session;
 
 class ArticleController extends Controller
 {
-    private $url = 'http://167.172.85.4:8080/api/';
+    private $uri = 'http://167.172.85.4:8080/api/';
     // private $uri = 'http://127.0.0.1:8000/api/';
     public function headers()
     {
@@ -21,7 +21,7 @@ class ArticleController extends Controller
     public function getData($endpoint)
     {
         $headers = $this->headers();
-        $client = new Client(['base_uri' => $this->url]);
+        $client = new Client(['base_uri' => $this->uri]);
         $response = $client->get($endpoint,['headers' => $headers]);
         $result = json_decode($response->getBody()->getContents());
         return $result;
@@ -30,7 +30,7 @@ class ArticleController extends Controller
     public function postData($data,$endpoint)
     {
         $headers = $this->headers();
-        $client = new Client(['base_uri' => $this->url]);
+        $client = new Client(['base_uri' => $this->uri]);
         $response = $client->post($endpoint,['form_params' => $data, 'headers' => $headers]);
         return json_decode($response->getBody()->getContents());
     }
@@ -129,7 +129,7 @@ class ArticleController extends Controller
     public function delete($slug)
     {
         $headers = $this->headers();
-        $client = new Client(['base_uri' => $this->url]);
+        $client = new Client(['base_uri' => $this->uri]);
         $response = $client->delete('article/delete/'.$slug,['headers' => $headers]);
         $res =  json_decode($response->getBody()->getContents());
         if ($res->message == 'Artikel Berhasil Dihapus') {
