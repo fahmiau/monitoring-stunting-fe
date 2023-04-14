@@ -169,7 +169,8 @@
         </thead>
         <tbody>
           @if($children->data_childrens)
-            @foreach ($children->data_childrens as $data_children)              
+            @foreach ($children->data_childrens as $data_children)
+            <input type="hidden" name="data_children_id_{{ $loop->iteration }}" id="data_children_id_{{ $loop->iteration }}" value="{{ $data_children->id }}">              
               <tr id="row_{{ $loop->iteration }}">
                 <td class="px-2 py-1 border-2 border-blue-400">
                   <input
@@ -245,7 +246,9 @@
         </tbody>
       </table>
       <div class="flex flex-wrap gap-x-4 w-full py-2 px-4">
+        @if ($children->status_children != null)
           <input type="hidden" name="status_children_id" id="status_children_id" value="{{ $children->status_children->id }}">
+        @endif
           <label class="font-medium w-full" for="status_children">Status Anak</label>
           <select
             class="inline-block w-1/4 rounded-md pl-4 text-lg py-2 shadow-md border border-transparent focus:outline-none focus:ring-2 ring-blue-400"

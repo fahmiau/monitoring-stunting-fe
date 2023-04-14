@@ -23,7 +23,7 @@
                 </li>
                 <li class="flex-1 md:flex-none md:mr-3">
                     <div class="relative inline-block">
-                        <span class="pr-4"><i class="em em-robot_face"></i></span> {{ strtok(Session::get('user_data')->name,' ') }}
+                        <span class="pr-4"><i class="fa fa-user"></i></span> {{ strtok(Session::get('user_data')->name,' ') }}
                     </div>
                 </li>
             </ul>
@@ -45,8 +45,8 @@
                     </a>
                 </li>
                 <li id="account" class="mr-3 flex-1">
-                    <a href="{{ url('/list-account') }}" class="block py-1 md:py-3 pl-1 align-middle text-gray-100 no-underline hover:text-gray-100 border-b-2 hover:border-primary  {{ Request::is('list-account*') ? 'border-blue-600' : 'border-gray-800' }}">
-                        <i class="fa fa-envelope pr-0 md:pr-3 {{ Request::is('list-account*') ? 'text-blue-600' : '' }}"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-100 block md:inline-block">Daftar Akun</span>
+                    <a href="{{ url('/account/mother') }}" class="block py-1 md:py-3 pl-1 align-middle text-gray-100 no-underline hover:text-gray-100 border-b-2 hover:border-primary  {{ Request::is('list-account*') ? 'border-blue-600' : 'border-gray-800' }}">
+                        <i class="fa fa-envelope pr-0 md:pr-3 {{ Request::is('account*') ? 'text-blue-600' : '' }}"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-100 block md:inline-block">Daftar Akun</span>
                     </a>
                 </li>
                 <li id="article" class="mr-3 flex-1">

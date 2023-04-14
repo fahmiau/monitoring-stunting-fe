@@ -55,7 +55,7 @@
         </div>
       </div>
       <div class="flex justify-center flex-col items-center">
-        <div class="w-1/3 my-8">
+        <div class="w-1/2 my-8">
           <canvas class="" id="report-chart" width="undefined" height="undefined"></canvas>
         </div>
         
@@ -65,7 +65,7 @@
               <th class="px-4 border border-blue-600 w-1/12">No</th>
               <th class="px-4 border border-blue-600 w-1/4">Nama Ibu</th>
               <th class="px-4 border border-blue-600 w-1/4">Nama Anak</th>
-              <th class="px-4 border border-blue-600 w-1/4">Status</th>
+              <th class="px-4 border border-blue-600 w-1/4">Status Terbaru</th>
               
             </tr>
           </thead>

@@ -22,10 +22,10 @@ const data = {
       0,
     ],
     backgroundColor: [
-      'rgb(55, 0, 0)',
-      'rgb(150, 0, 0)',
-      'rgb(20, 120, 20)',
-      'rgb(0, 50, 0)',
+      '#b30000',
+      '#1a53ff',
+      '#5ad45a',
+      '#ebdc78',
     ],
     hoverOffset: 2
   }]

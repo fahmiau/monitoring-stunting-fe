@@ -20,7 +20,35 @@
         <article>
           {!! $article->body !!}
         </article>
-        <hr>
+      </div>
+      <hr class="my-4">
+      <div>
+        <h3 class="text-xl">Komentar</h3>
+        <div class="pl-4">
+          <div>
+            <h5>Nama User</h5>
+            <input class="w-full border-x-0 border-t-0 border-b-2 bg-slate-200"
+            type="text"
+            placeholder="Tambah komentar"
+            >
+            <textarea
+              class="w-full border-x-0 border-t-0 border-b-2 bg-slate-200"
+              name="" id="" rows="1"
+              placeholder="Tambah komentar"
+              ></textarea>
+              <span
+              class="w-full "
+              contenteditable="true"
+              >
+              </span>
+          </div>
+          <div>
+            <h5>Nama User</h5>
+            <p>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsum voluptate dolores iste omnis non corrupti hic esse, laboriosam eos vero quisquam, corporis amet impedit dolore. Ea, aliquid! Ab, tempore. Rem.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </div>

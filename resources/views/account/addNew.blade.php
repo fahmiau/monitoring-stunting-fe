@@ -72,12 +72,26 @@
             <input class="block w-full my-1 rounded-md pl-4 text-lg py-2 shadow-md border border-transparent focus:outline-none focus:ring-2 ring-blue-400" type="number" name="nik" id="nik" placeholder="NIK">
           </div>
           <div class="w-1/4 py-2 px-4">
-            <label class="font-medium" for="nomor_telepon">Nomor Telepon</label>
+            <label class="font-medium" for="nomor_telepon">No Hp Pribadi</label>
             <input class="block w-full my-1 rounded-md pl-4 text-lg py-2 shadow-md border border-transparent focus:outline-none focus:ring-2 ring-blue-400" type="number" name="nomor_telepon" id="nomor_telepon" placeholder="Nomor Telepon">
           </div>
           <div class="w-1/2 py-2 px-4">
             <label class="font-medium" for="alamat">Alamat</label>
             <input class="block w-full my-1 rounded-md pl-4 text-lg py-2 shadow-md border border-transparent focus:outline-none focus:ring-2 ring-blue-400" type="text" name="alamat" id="alamat" placeholder="Alamat">
+          </div>
+          <div class="flex flex-wrap hidden" id="tempat_kerja_form">
+            <div class="w-1/2 py-2 px-4">
+              <label class="font-medium" for="tempat_kerja">Unit Kerja</label>
+            <input class="block w-full my-1 rounded-md pl-4 text-lg py-2 shadow-md border border-transparent focus:outline-none focus:ring-2 ring-blue-400" type="text" name="tempat_kerja" id="tempat_kerja" placeholder="Tempat Kerja">
+            </div>
+            <div class="w-1/2 py-2 px-4">
+              <label class="font-medium" for="nomor_telepon_kerja">Nomor Telepon Unit</label>
+              <input class="block w-full my-1 rounded-md pl-4 text-lg py-2 shadow-md border border-transparent focus:outline-none focus:ring-2 ring-blue-400" type="text" name="nomor_telepon_kerja" id="nomor_telepon_kerja" placeholder="No Telp Unit Kerja">
+            </div>
+            <div class="w-1/2 py-2 px-4">
+              <label class="font-medium" for="alamat_kerja">Alamat Unit</label>
+              <input class="block w-full my-1 rounded-md pl-4 text-lg py-2 shadow-md border border-transparent focus:outline-none focus:ring-2 ring-blue-400" type="text" name="alamat_kerja" id="alamat_kerja" placeholder="Alamat Unit Kerja">
+            </div>
           </div>
         </div>
       </div>
@@ -122,27 +136,33 @@
   function categoryForm(val) {
     var userForm = document.getElementById("user-form");
     var form = document.getElementById("add-on-form");
-    if (val == 'User') {
-      if (form.classList.contains("hidden")) {
-        provinsi();
-        form.classList.remove("hidden");
+    var tempat_kerja_form = document.getElementById("tempat_kerja_form");
+
+    if (!(userForm.classList.contains("hidden"))) {
+        userForm.classList.add("hidden");
       }
+
+    if (!(form.classList.contains("hidden"))) {
+      form.classList.add("hidden");
+    }
+
+    if (!(tempat_kerja_form.classList.contains("hidden"))) {
+      tempat_kerja_form.classList.add("hidden");
+    }
+
+    if (val == 'User') {
+      provinsi();
+      form.classList.remove("hidden");
       userForm.classList.remove("hidden");
     } else if (val == 'Admin'){
-      if (!(form.classList.contains("hidden"))) {
-        form.classList.add("hidden");
-      }
-      if (!(userForm.classList.contains("hidden"))) {
-        userForm.classList.add("hidden");
-      }
+      
+    } else if (val == 'Kader'){
+      form.classList.remove("hidden");
+      provinsi();
     } else {
-      if (!(userForm.classList.contains("hidden"))) {
-        userForm.classList.add("hidden");
-      }
-      if (form.classList.contains("hidden")) {
-        form.classList.remove("hidden");
-        provinsi();
-      }
+      form.classList.remove("hidden");
+      provinsi();
+      tempat_kerja_form.classList.remove("hidden");
     }
   }
   

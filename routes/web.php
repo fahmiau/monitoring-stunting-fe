@@ -25,12 +25,21 @@ Route::get('/',[UserController::class,'dashboardView'])->name('dashboard');
 Route::get('/login',[UserController::class,'loginView'])->name('login');
 Route::post('/login',[UserController::class,'login']);
 Route::get('/logout',[UserController::class,'logout'])->name('logout');
-Route::get('/list-account',[UserController::class,'viewAccounts'])->name('viewAccount');
+
+Route::get('/account/mother',[UserController::class,'viewAccounts'])->name('viewAccount');
 Route::get('/add-new',[UserController::class,'addView']);
 Route::get('/account/mother/{mother_id}',[UserController::class,'showAccount']);
+Route::get('/account/nakes/{nakes_id}',[UserController::class,'showNakes']);
+Route::get('/account/kader/{kader_id}',[UserController::class,'showKader']);
+Route::get('/account/nakes',[UserController::class,'nakesAccounts']);
+Route::get('/account/kader',[UserController::class,'kaderAccounts']);
 Route::post('/account/mother/update',[UserController::class, 'motherUpdate']);
 Route::post('/add-new',[UserController::class,'addNew']);
 Route::get('/account/mother/delete/{id}',[UserController::class,'motherDelete']);
+Route::get('/account/nakes/delete/{id}',[UserController::class,'nakesDelete']);
+Route::get('/account/kader/delete/{id}',[UserController::class,'kaderDelete']);
+Route::post('/account/nakes/update',[UserController::class,'nakesUpdate']);
+Route::post('/account/kader/update',[UserController::class,'kaderUpdate']);
 
 Route::get('/children/add/{mother_id}',[ChildrenController::class,'addChildren']);
 Route::post('/children/add/store',[ChildrenController::class,'store']);
@@ -42,6 +51,9 @@ Route::post('/status-stunting/update',[ChildrenController::class,'updateStatusSt
 Route::get('/data-children/delete/{id}',[ChildrenController::class,'deleteDataChildren']);
 Route::post('/data-children/add',[ChildrenController::class,'addDataChildren']);
 Route::post('/data-children/update',[ChildrenController::class,'updateDataChildren']);
+
+//url buat js
+Route::get('/{type}/all/by-{daerah}/{daerah_id}',[UserController::class,'getAccounts']);
 
 Route::get('/children/detail/{id}',[ReportController::class,'viewChildrenDetail']);
 Route::get('/report',[ReportController::class,'viewReport']);

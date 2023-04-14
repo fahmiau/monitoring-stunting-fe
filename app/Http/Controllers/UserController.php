@@ -28,7 +28,7 @@ class UserController extends Controller
             // dd($result);
         } catch (\Exception $res) {
             // $result = $res;
-            if ($res->message == 'Unauthenticated') {
+            if (strpos($res->getMessage(),'Unauthenticated') !== false) {
                 Session::flush();
                 return view('login');
             }
@@ -72,6 +72,7 @@ class UserController extends Controller
             if (strpos($res->getMessage(),'Email atau Password Tidak Sesuai') !== false) {
                 return back()->withInput()->withErrors(['email' => 'Email atau Password Salah !!!']);
             }
+            
         }
         $daerah = $this->getData('kelurahan/user/'.$result->user->id);
         Session::put('user_daerah',$daerah);
@@ -101,9 +102,27 @@ class UserController extends Controller
 
     public function viewAccounts()
     {
-        $data = $this->getData('mother/all');
-        // dd($data);
-        return view('account.listAccount')->with('mothers',$data);
+        $user_daerah = Session::get('user_daerah');
+        $provinsi = $this->getData('provinsi/all');
+        if (isset($user_daerah->provinsi_id)) {
+            $kota_kabupaten = $this->getData('kota-kabupaten/by-provinsi/'.$user_daerah->provinsi_id);
+            $kecamatan = $this->getData('kecamatan/by-kota-kabupaten/'.$user_daerah->kota_kabupaten_id);
+            $kelurahan = $this->getData('kelurahan/by-kecamatan/'.$user_daerah->kecamatan_id);
+            $data = $this->getData('mother/all/by-kelurahan/'.$user_daerah->kelurahan_id);
+        } else {
+            $data = $this->getData('mother/all');
+            $kota_kabupaten = null;
+            $kecamatan = null;
+            $kelurahan = null;
+        }
+        return view('account.listAccount')
+            ->with('mothers',$data)
+            ->with('provinsis',$provinsi)
+            ->with('kota_kabupatens',$kota_kabupaten)
+            ->with('kecamatans',$kecamatan)
+            ->with('kelurahans',$kelurahan)
+            ->with('data',$data)
+            ->with('data_daerah',$user_daerah);
     }
 
     public function addView()
@@ -148,7 +167,6 @@ class UserController extends Controller
         } catch (\Exception $res) {
             // dd($res);
         }
-        // dd($response);
         return redirect('/account/mother/'.$request->id)->with('notification',[
             'type'=>'success',
             'message'=>'Data Berhasil Diubah'
@@ -166,5 +184,146 @@ class UserController extends Controller
         } else{
             return 'failed';
         }
+    }
+
+    public function nakesAccounts()
+    {
+        $user_daerah = Session::get('user_daerah');
+        $provinsi = $this->getData('provinsi/all');
+        if (isset($user_daerah->provinsi_id)) {
+            $kota_kabupaten = $this->getData('kota-kabupaten/by-provinsi/'.$user_daerah->provinsi_id);
+            $kecamatan = $this->getData('kecamatan/by-kota-kabupaten/'.$user_daerah->kota_kabupaten_id);
+            $kelurahan = $this->getData('kelurahan/by-kecamatan/'.$user_daerah->kecamatan_id);
+            $data = $this->getData('nakes/all/by-kelurahan/'.$user_daerah->kelurahan_id);
+        } else {
+            $data = $this->getData('nakes/all');
+            $kota_kabupaten = null;
+            $kecamatan = null;
+            $kelurahan = null;
+        }
+        return view('account.listNakes')
+            ->with('nakes',$data)
+            ->with('provinsis',$provinsi)
+            ->with('kota_kabupatens',$kota_kabupaten)
+            ->with('kecamatans',$kecamatan)
+            ->with('kelurahans',$kelurahan)
+            ->with('data',$data)
+            ->with('data_daerah',$user_daerah);
+    }
+
+    public function kaderAccounts()
+    {
+        $user_daerah = Session::get('user_daerah');
+        $provinsi = $this->getData('provinsi/all');
+        if (isset($user_daerah->provinsi_id)) {
+            $kota_kabupaten = $this->getData('kota-kabupaten/by-provinsi/'.$user_daerah->provinsi_id);
+            $kecamatan = $this->getData('kecamatan/by-kota-kabupaten/'.$user_daerah->kota_kabupaten_id);
+            $kelurahan = $this->getData('kelurahan/by-kecamatan/'.$user_daerah->kecamatan_id);
+            $data = $this->getData('kader/all/by-kelurahan/'.$user_daerah->kelurahan_id);
+        } else {
+            $data = $this->getData('kader/all');
+            $kota_kabupaten = null;
+            $kecamatan = null;
+            $kelurahan = null;
+        }
+        return view('account.listKader')
+            ->with('kaders',$data)
+            ->with('provinsis',$provinsi)
+            ->with('kota_kabupatens',$kota_kabupaten)
+            ->with('kecamatans',$kecamatan)
+            ->with('kelurahans',$kelurahan)
+            ->with('data',$data)
+            ->with('data_daerah',$user_daerah);
+    }
+
+    public function getAccounts($type,$daerah,$daerah_id)
+    {
+        $data = $this->getData($type .'/all/by-'.$daerah.'/'.$daerah_id);
+        return $data;
+    }
+
+    public function nakesDelete($id)
+    {
+        $headers = $this->headers();
+        $client = new Client(['base_uri' => $this->uri]);
+        $response = $client->delete('nakes/delete/'.$id,['headers' => $headers]);
+        $res =  json_decode($response->getBody()->getContents());
+        if ($res->message == 'Data Nakes Berhasil Dihapus') {
+            return 'success';
+        } else{
+            return 'failed';
+        }
+    }
+
+    public function kaderDelete($id)
+    {
+        $headers = $this->headers();
+        $client = new Client(['base_uri' => $this->uri]);
+        $response = $client->delete('kaderx/delete/'.$id,['headers' => $headers]);
+        $res =  json_decode($response->getBody()->getContents());
+        if ($res->message == 'Data Kader Berhasil Dihapus') {
+            return 'success';
+        } else{
+            return 'failed';
+        }
+    }
+
+    public function showNakes($nakes_id)
+    {
+        $nakes = $this->getData('nakes/nakes-id/'.$nakes_id);
+        $provinsi = $this->getData('provinsi/all');
+        $kota_kabupaten = $this->getData('kota-kabupaten/by-provinsi/'.$nakes->provinsi_id);
+        $kecamatan = $this->getData('kecamatan/by-kota-kabupaten/'.$nakes->kota_kabupaten_id);
+        $kelurahan = $this->getData('kelurahan/by-kecamatan/'.$nakes->kecamatan_id);
+        return view('account.showNakes')
+            ->with('provinsis',$provinsi)
+            ->with('kota_kabupatens',$kota_kabupaten)
+            ->with('kecamatans',$kecamatan)
+            ->with('kelurahans',$kelurahan)
+            ->with('nakes',$nakes);
+    }
+
+    public function showKader($kader_id)
+    {
+        $kader = $this->getData('kader/kader-id/'.$kader_id);
+        $provinsi = $this->getData('provinsi/all');
+        $kota_kabupaten = $this->getData('kota-kabupaten/by-provinsi/'.$kader->provinsi_id);
+        $kecamatan = $this->getData('kecamatan/by-kota-kabupaten/'.$kader->kota_kabupaten_id);
+        $kelurahan = $this->getData('kelurahan/by-kecamatan/'.$kader->kecamatan_id);
+        return view('account.showKader')
+            ->with('provinsis',$provinsi)
+            ->with('kota_kabupatens',$kota_kabupaten)
+            ->with('kecamatans',$kecamatan)
+            ->with('kelurahans',$kelurahan)
+            ->with('kader',$kader);
+    }
+
+    public function nakesUpdate(Request $request)
+    {
+        try {
+            $response = $this->postData($request->input(),'nakes/update/'.$request->id);
+            // dd($response);
+        } catch (\Exception $res) {
+            // dd($res);
+        }
+        return redirect('/account/nakes/'.$request->id)->with('notification',[
+            'type'=>'success',
+            'message'=>'Data Berhasil Diubah'
+        ]);
+    }
+
+    public function kaderUpdate(Request $request)
+    {
+        try {
+            $response = $this->postData($request->input(),'kader/update/'.$request->id);
+            // dd($response);
+        } catch (\Exception $res) {
+            // dd($res);
+        }
+        // dd($response);
+        return redirect('/account/nakes/'.$request->id)->with('notification',[
+            'type'=>'success',
+            'message'=>'Data Berhasil Diubah'
+        ]);
     }
 }
