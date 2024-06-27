@@ -1,7 +1,7 @@
 @extends('app')
 @section('title','Create Article')
 @section('container')
-  <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+  <script src="https://cdn.tiny.cloud/1/qy9fluneitjt64pe35btqsaauaxl28p8vud57xq7x7pyst0m/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
   <script>
     tinymce.init({
       selector: '#body',

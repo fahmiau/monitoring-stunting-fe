@@ -117,6 +117,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js"></script>
 <script>
+    console.log('asdasd')
     const sangat_dibawah = document.getElementById('status_sangat_dibawah').value
     const dibawah = document.getElementById('status_dibawah').value
     const normal = document.getElementById('status_normal').value

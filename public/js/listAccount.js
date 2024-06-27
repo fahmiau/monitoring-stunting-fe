@@ -1,5 +1,6 @@
-// const url = 'http://127.0.0.1:8001'
-const url = 'http://167.172.85.4'
+// const local_url = process.env.APP_URL;
+
+// const url = 'http://167.172.85.4'
 // function getAccountData(category,daerah,daerah_id) {
 //   var data_table = document.getElementById(category+'-table')
 //   while (data_table.childElementCount > 0) {
@@ -7,7 +8,7 @@ const url = 'http://167.172.85.4'
 //   }
 //   axios({
 //     method : 'get',
-//     url : url+'/'+category+'/all/by-'+daerah+'/'+daerah_id,
+//     url : local_url+'/'+category+'/all/by-'+daerah+'/'+daerah_id,
 //     headers : {
 //       'Accept' : 'application/json'
 //     }
@@ -18,7 +19,7 @@ const url = 'http://167.172.85.4'
 //       var childrensHtml = ''
 //       data.childrens.forEach(children => {
 //           childrensHtml += '<div>'+
-//           '<a class="underline hover:no-underline" href="'+url+'/children/detail/'+children.id+'">'+children.nama+'</a>'+
+//           '<a class="underline hover:no-underline" href="'+local_url+'/children/detail/'+children.id+'">'+children.nama+'</a>'+
 //           '</div>'
 //         })
 //       var statusHtml = ''
@@ -47,7 +48,7 @@ function getMothersData(daerah,daerah_id) {
   }
   axios({
     method : 'get',
-    url : url+'/mother/all/by-'+daerah+'/'+daerah_id,
+    url : local_url+'/mother/all/by-'+daerah+'/'+daerah_id,
     headers : {
       'Accept' : 'application/json'
     }
@@ -60,7 +61,7 @@ function getMothersData(daerah,daerah_id) {
         
         mother.childrens.forEach(children => {
           childrensHtml += '<div>'+
-          '<a class="underline hover:no-underline" href="'+url+'/children/detail/'+children.id+'">'+children.nama+'</a>'+
+          '<a class="underline hover:no-underline" href="'+local_url+'/children/detail/'+children.id+'">'+children.nama+'</a>'+
           '</div>'
         })
       }
@@ -88,7 +89,7 @@ function getMothersData(daerah,daerah_id) {
         '<td class="border px-4 py-1 w-32">'+
           '<a'+
           ' class="inline-block text-center font-medium border-2 border-secondary bg-[#aacfff] hover:bg-secondary hover:text-primary p-2 rounded-md object-center transform duration-300 mr-1"'+
-          ' href="'+url+'/account/mother/'+mother.id+'">'+
+          ' href="'+local_url+'/account/mother/'+mother.id+'">'+
           '<i class="fas fa-pencil-alt"></i>'+
           '</a>'+
           '<button'+ 
@@ -110,7 +111,7 @@ function getNakesData(daerah,daerah_id) {
   }
   axios({
     method : 'get',
-    url : url+'/nakes/all/by-'+daerah+'/'+daerah_id,
+    url : local_url+'/nakes/all/by-'+daerah+'/'+daerah_id,
     headers : {
       'Accept' : 'application/json'
     }
@@ -129,7 +130,7 @@ function getNakesData(daerah,daerah_id) {
         '<td class="border px-4 py-1 w-32">'+
           '<a'+
           ' class="inline-block text-center font-medium border-2 border-secondary bg-[#aacfff] hover:bg-secondary hover:text-primary p-2 rounded-md object-center transform duration-300 mr-1"'+
-          ' href="'+url+'/account/nakes/'+nakes.id+'">'+
+          ' href="'+local_url+'/account/nakes/'+nakes.id+'">'+
           '<i class="fas fa-pencil-alt"></i> '+
           '</a>'+
           '<button'+ 
@@ -151,7 +152,7 @@ function getKaderData(daerah,daerah_id) {
   }
   axios({
     method : 'get',
-    url : url+'/kader/all/by-'+daerah+'/'+daerah_id,
+    url : local_url+'/kader/all/by-'+daerah+'/'+daerah_id,
     headers : {
       'Accept' : 'application/json'
     }
@@ -169,7 +170,7 @@ function getKaderData(daerah,daerah_id) {
         '<td class="border px-4 py-1 w-32">'+
           '<a'+
           ' class="inline-block text-center font-medium border-2 border-secondary bg-[#aacfff] hover:bg-secondary hover:text-primary p-2 rounded-md object-center transform duration-300 mr-1"'+
-          ' href="'+url+'/account/kader/'+kader.id+'">'+
+          ' href="'+local_url+'/account/kader/'+kader.id+'">'+
           '<i class="fas fa-pencil-alt"></i> '+
           ' </a>'+
           '<button'+ 

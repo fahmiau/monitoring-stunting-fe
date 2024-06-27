@@ -1,4 +1,5 @@
 const mix = require('laravel-mix');
+var webpack = require('webpack');
 
 /*
  |--------------------------------------------------------------------------
@@ -15,3 +16,13 @@ mix.js('resources/js/app.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css', [
         require("tailwindcss"),
     ]);
+mix.copyDirectory('resources/js/tinymce/js/tinymce', 'public/js/tinymce');
+mix.js('resources/js/app.js', 'public/js')
+    .webpackConfig({
+        plugins: [
+            new webpack.DefinePlugin({
+                __ENV: JSON.stringify(process.env),
+            }),
+        ],
+    });
+

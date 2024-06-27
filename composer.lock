@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2b1c044bd8ff60057d26506ff2f106e4",
+    "content-hash": "8ac751ec0c328d7656bc6f23096c0a30",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4920,16 +4920,16 @@
         },
         {
             "name": "tinymce/tinymce",
-            "version": "6.0.2",
+            "version": "7.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tinymce/tinymce-dist.git",
-                "reference": "6eb0c53e09bd552740dee0ede369f6b97d6983d5"
+                "reference": "863759766e2397d1f639c63d006680a9e8ba6233"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tinymce/tinymce-dist/zipball/6eb0c53e09bd552740dee0ede369f6b97d6983d5",
-                "reference": "6eb0c53e09bd552740dee0ede369f6b97d6983d5",
+                "url": "https://api.github.com/repos/tinymce/tinymce-dist/zipball/863759766e2397d1f639c63d006680a9e8ba6233",
+                "reference": "863759766e2397d1f639c63d006680a9e8ba6233",
                 "shasum": ""
             },
             "type": "component",
@@ -4954,7 +4954,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "MIT-only"
+                "GPL-2.0-or-later"
             ],
             "description": "Web based JavaScript HTML WYSIWYG editor control.",
             "homepage": "https://www.tiny.cloud/",
@@ -4973,9 +4973,9 @@
                 "wysiwyg"
             ],
             "support": {
-                "source": "https://github.com/tinymce/tinymce-dist/tree/6.0.2"
+                "source": "https://github.com/tinymce/tinymce-dist/tree/7.0.1"
             },
-            "time": "2022-04-27T03:41:08+00:00"
+            "time": "2024-04-10T07:29:34+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

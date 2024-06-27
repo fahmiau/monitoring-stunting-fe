@@ -60,6 +60,7 @@
   {{-- </div> --}}
 @endsection
 <script>
+  const local_url = process.env.APP_URL;
   function deleteArticle(slug) {
     Swal.fire({
       icon: 'warning',
@@ -71,7 +72,7 @@
       confirmButtonText: 'Hapus data',
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch('http://167.172.85.4/article/delete/'+slug)
+        fetch(local_url'/article/delete/'+slug)
           .then(response => response.text())
           .then((res) => {
             if (res == 'success') {

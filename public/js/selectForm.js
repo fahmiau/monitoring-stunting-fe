@@ -1,5 +1,5 @@
+// const api_url = process.env.API_URL;
 function clearSelectForm(element) {
-  // console.log(element);
   while (element.childElementCount > 1) {          
     element.removeChild(element.lastChild);
   }
@@ -35,7 +35,7 @@ function provinsi(val) {
   }
   axios({
     method : 'get',
-    url : 'http://167.172.85.4:8080/api/kota-kabupaten/by-provinsi/'+val,
+    url : api_url+'kota-kabupaten/by-provinsi/'+val,
     headers : {
       'Accept' : 'application/json'
     }
@@ -72,7 +72,7 @@ function kotaKab(val) {
   }
   axios({
     method : 'get',
-    url : 'http://167.172.85.4:8080/api/kecamatan/by-kota-kabupaten/'+val,
+    url : api_url+'kecamatan/by-kota-kabupaten/'+val,
     headers : {
       'Accept' : 'application/json'
     }
@@ -107,7 +107,7 @@ function kecamatan(val) {
   }
   axios({
     method : 'get',
-    url : 'http://167.172.85.4:8080/api/kelurahan/by-kecamatan/'+val,
+    url : api_url+'kelurahan/by-kecamatan/'+val,
     headers : {
       'Accept' : 'application/json'
     }
@@ -141,7 +141,7 @@ function kelurahan(val) {
   }
   axios({
     method : 'get',
-    url : 'http://167.172.85.4:8080/api/kelurahan/by-kecamatan/'+val,
+    url : api_url+'kelurahan/by-kecamatan/'+val,
     headers : {
       'Accept' : 'application/json'
     }

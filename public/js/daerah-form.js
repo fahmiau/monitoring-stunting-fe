@@ -1,5 +1,6 @@
-// const url = 'http://127.0.0.1:8001'
-const url = 'http://167.172.85.4'
+// const local_url = process.env.APP_URL;
+// const url = 'http://167.172.85.4'
+// const api_url = process.env.API_URL;
 function clearSelectForm(element) {
   while (element.childElementCount > 1) {          
     element.removeChild(element.lastChild);
@@ -49,7 +50,7 @@ function getChildrenData(type,id) {
   graphStatus(type,id)
   axios({
     method : 'get',
-    url : url+'/childrens/'+type+'/'+id,
+    url : local_url+'/childrens/'+type+'/'+id,
     headers : {
       'Accept' : 'application/json'
     }
@@ -60,7 +61,7 @@ function getChildrenData(type,id) {
       var childrensHtml = ''
       mother.childrens.forEach(children => {
           childrensHtml += '<div>'+
-          '<a class="underline hover:no-underline" href="'+url+'/children/detail/'+children.id+'">'+children.nama+'</a>'+
+          '<a class="underline hover:no-underline" href="'+local_url+'/children/detail/'+children.id+'">'+children.nama+'</a>'+
           '</div>'
         })
       var statusHtml = ''
@@ -93,7 +94,7 @@ function kotaKab(val) {
   clearSelectForm(kelurahan_form);
   axios({
     method : 'get',
-    url : 'http://167.172.85.4:8080/api/kota-kabupaten/by-provinsi/'+val,
+    url : api_url+'kota-kabupaten/by-provinsi/'+val,
     headers : {
       'Accept' : 'application/json'
     }
@@ -116,7 +117,7 @@ function kecamatan(val) {
   clearSelectForm(kelurahan_form);
   axios({
     method : 'get',
-    url : 'http://167.172.85.4:8080/api/kecamatan/by-kota-kabupaten/'+val,
+    url : api_url+'kecamatan/by-kota-kabupaten/'+val,
     headers : {
       'Accept' : 'application/json'
     }
@@ -137,7 +138,7 @@ function kelurahan(val) {
   getChildrenData('kecamatan',val)
   axios({
     method : 'get',
-    url : 'http://167.172.85.4:8080/api/kelurahan/by-kecamatan/'+val,
+    url : api_url+'kelurahan/by-kecamatan/'+val,
     headers : {
       'Accept' : 'application/json'
     }
@@ -155,7 +156,7 @@ function kelurahan(val) {
 function graphStatus(type,id) {
   axios({
     method : 'get',
-    url : url+'/status-stunting/'+type+'/'+id,
+    url : local_url+'/status-stunting/'+type+'/'+id,
     headers : {
       'Accept' : 'application/json'
     }

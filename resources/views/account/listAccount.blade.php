@@ -89,7 +89,7 @@
       confirmButtonText: 'Hapus data',
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch('http://167.172.85.4/account/mother/delete/'+id)
+        fetch(local_url+'/account/mother/delete/'+id)
           .then(response => response.text())
           .then((res) => {
             if (res == 'success') {

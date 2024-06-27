@@ -355,7 +355,7 @@
         confirmButtonText: 'Hapus data',
       }).then((result) => {
         if (result.isConfirmed) {
-          fetch('http://167.172.85.4/data-children/delete/'+id)
+          fetch(local_url+'/data-children/delete/'+id)
             .then(response => response.text())
             .then((res) => {
               if (res == 'success') {
@@ -372,8 +372,8 @@
   <script>
   var gender = document.getElementById('gender').value
   var childrenId = parseInt(document.getElementById('childrenId').value)
-  createChart('http://167.172.85.4:8080/api/graph/'+gender+'/height/'+childrenId,'height')
-  createChart('http://167.172.85.4:8080/api/graph/'+gender+'/weight/'+childrenId,'weight')
+  createChart(api_url+'graph/'+gender+'/height/'+childrenId,'height')
+  createChart(api_url+'graph/'+gender+'/weight/'+childrenId,'weight')
   
   function createChart(url,type) {
     fetch(url)

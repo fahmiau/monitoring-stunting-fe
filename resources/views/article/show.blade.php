@@ -50,6 +50,33 @@
           </div>
         </div>
       </div>
+      <div class="mt-8">
+        <h2 class="text-2xl font-medium">Komentar</h2>
+      
+        <form class="mt-8">
+          <div class="flex flex-col">
+            <textarea id="comment" rows="3" class="w-full border rounded-md p-2" placeholder="Tambah Komentar"></textarea>
+          </div>
+      
+          <div class="mt-4 flex justify-end">
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Tambah Komentar</button>
+          </div>
+        </form>
+      
+        <div class="mt-8">
+          <ul>
+            <li class="mb-4">
+              <div class="flex items-center">
+                <div>
+                  <h3 class="font-bold">John Doe</h3>
+                  <p class="text-gray-500">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, dui ac faucibus scelerisque, enim mauris faucibus enim, vel faucibus purus enim vitae enim.</p>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
     </div>
   </div>
   <script>

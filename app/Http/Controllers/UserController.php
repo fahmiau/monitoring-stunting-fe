@@ -9,8 +9,14 @@ use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
-    private $uri = 'http://167.172.85.4:8080/api/';
-    // private $uri = 'http://127.0.0.1:8000/api/';
+    // private $uri = 'http://167.172.85.4:8080/api/';
+    // private $uri = 'http://127.0.0.1:1000/api/';
+    private $uri;
+    function __construct()
+    {
+        $this->uri = config('app.api_url');   
+    }
+
     public function headers()
     {
         return [
@@ -79,6 +85,7 @@ class UserController extends Controller
         Session::put('user_token',$result->token);
         Session::put('user_data',$result->user);
         Session::put('user_role',$result->role->category);
+        Session::put('verified',$result->verified);
 
         return redirect()->route('dashboard');
     }
