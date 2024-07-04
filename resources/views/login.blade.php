@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
+        <link rel="shortcut icon" href="{{ asset('img/icons/logo_kecil.png') }}" type="image/x-icon">
         <title>Login</title>
 
         <!-- Fonts -->

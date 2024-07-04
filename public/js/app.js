@@ -2062,8 +2062,6 @@ module.exports = {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
-console.log("http://localhost:8001"); // Outputs: https://your-api.com
-
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":

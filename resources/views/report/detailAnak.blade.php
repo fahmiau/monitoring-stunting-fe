@@ -310,7 +310,7 @@
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js"></script>
   <script src="{{ asset('js/data-children.js') }}"></script>
-  <script src="{{ asset('/js/alamat.js') }}"></script>
+  <script src="{{ asset('js/alamat.js') }}"></script>
   <script>
     var inputs = document.querySelectorAll('input')
     inputs.forEach(input => {

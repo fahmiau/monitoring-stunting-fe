@@ -143,4 +143,24 @@ class ArticleController extends Controller
             return 'failed';
         }
     }
+
+    function articleLikeToggle(Request $request) {
+        // dd($request->all());
+        $data = $this->postData($request->all(),'article/like-toggle');
+        return $data;
+    }
+
+    function addComment(Request $request) {
+        // dd($request->all());
+        $data = $this->postData($request->all(),'article/comment/add');
+
+        return $data;
+    }
+
+    function addReplyComment(Request $request) {
+        // dd($request->all());
+        $data = $this->postData($request->all(),'article/reply-comment/add');
+
+        return $data;
+    }
 }

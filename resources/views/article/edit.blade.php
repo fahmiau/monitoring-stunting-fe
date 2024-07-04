@@ -1,7 +1,7 @@
 @extends('app')
 @section('title','Edit Article')
 @section('container')
-  <script src="https://cdn.tiny.cloud/1/txfo35g80hksidw4otl20sz4ymv2y1ngxp899kx9lm06ll67/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+  <script src="https://cdn.tiny.cloud/1/qy9fluneitjt64pe35btqsaauaxl28p8vud57xq7x7pyst0m/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
   <script>
     tinymce.init({
       selector: '#body',
@@ -14,17 +14,17 @@
           editor.save();
         });
       },
-      content_css: '/css/tinycss.css',
+      plugins: 'image lists',
+      content_css: '/css/tinycss.css?' + new Date().getTime(),
       body_class: 'px-8 py-4',
       formats: {
         // Changes the default format for the bold button to produce a span with a bold class
         bold: { inline: 'span', classes: 'font-bold' },
-        h1: { block: 'h1', classes: 'font-bold text-6xl'},
-        h2: { block: 'h2', classes: 'font-bold text-5xl'},
-        h3: { block: 'h3', classes: 'font-bold text-4xl'},
-        h4: { block: 'h4', classes: 'font-bold text-3xl'},
-        h5: { block: 'h5', classes: 'font-bold text-2xl'},
-        h6: { block: 'h6', classes: 'font-bold text-xl'},
+        p : {block: 'p', classes: 'indent-8 my-4'},
+        indent : {block: 'p', classes: 'indent-8 my-4'},
+        h1: { block: 'h1', classes: 'font-bold text-3xl'},
+        h2: { block: 'h2', classes: 'font-bold text-2xl'},
+        h3: { block: 'h3', classes: 'font-bold text-xl'},
         alignleft: { block: 'p', classes: 'text-left'},
         alignright: { block: 'p', classes: 'text-right'},
         alignjustify: { block: 'p', classes: 'text-justify'},
@@ -33,12 +33,12 @@
         underline: { inline: 'span', classes: 'underline'},
         strikethrough: { inline: 'span', classes: 'line-through'},
       },
-      plugins: [
-        "advlist autolink lists link image charmap print preview anchor",
-        "searchreplace visualblocks code fullscreen",
-        "insertdatetime media table contextmenu paste imagetools"
-      ],
-      toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image ",
+      // plugins: [
+      //   "advlist autolink lists link image charmap print preview anchor",
+      //   "searchreplace visualblocks code fullscreen",
+      //   "insertdatetime media table contextmenu paste imagetools"
+      // ],
+      toolbar: "undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image ",
 
       image_title: true,
       automatic_uploads: true,

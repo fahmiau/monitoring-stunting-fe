@@ -15,7 +15,7 @@
                 <div class="flex-1 text-right md:text-center">
                     <h5 class="font-bold uppercase text-secondary">Total Pengguna</h5>
                     <h3 class="font-bold text-3xl">{{ $data->user }} </h3>
-                    </div>
+                </div>
             </div>
         </div>
         <!--/Metric Card-->
@@ -117,7 +117,6 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js"></script>
 <script>
-    console.log('asdasd')
     const sangat_dibawah = document.getElementById('status_sangat_dibawah').value
     const dibawah = document.getElementById('status_dibawah').value
     const normal = document.getElementById('status_normal').value

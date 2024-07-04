@@ -67,6 +67,9 @@ Route::get('/article/delete/{slug}',[ArticleController::class,'delete']);
 Route::post('/article/store',[ArticleController::class,'store']);
 Route::post('/article/update/{slug}',[ArticleController::class,'update']);
 Route::post('/article/image-upload',[ArticleController::class,'uploadImage']);
+Route::post('/article/comment/add',[ArticleController::class,'addComment']);
+Route::post('/article/reply-comment/add',[ArticleController::class,'addReplyComment']);
+Route::post('/article/like',[ArticleController::class,'articleLikeToggle']);
 
 // Route::get('/childrens/kelurahan/{id}',[ChildrenController::class,'getByKelurahan']);
 // Route::get('/childrens/kecamatan/{id}',[ChildrenController::class,'getByKecamatan']);

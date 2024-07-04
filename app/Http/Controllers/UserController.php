@@ -35,8 +35,7 @@ class UserController extends Controller
         } catch (\Exception $res) {
             // $result = $res;
             if (strpos($res->getMessage(),'Unauthenticated') !== false) {
-                Session::flush();
-                return view('login');
+                return redirect()->back();
             }
         }
         return $result;
@@ -83,6 +82,7 @@ class UserController extends Controller
         $daerah = $this->getData('kelurahan/user/'.$result->user->id);
         Session::put('user_daerah',$daerah);
         Session::put('user_token',$result->token);
+        Session::put('logged_in',1);
         Session::put('user_data',$result->user);
         Session::put('user_role',$result->role->category);
         Session::put('verified',$result->verified);

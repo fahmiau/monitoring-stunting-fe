@@ -36,7 +36,7 @@
               <td class="text-center border px-4 py-1">{{ ($article->published == 0) ? 'Draft' : 'Published' }}</td>
               <td class="border px-4 py-1">{{ $article->author }}</td>
               <td class="text-center border px-4 py-1">{{ $article->views->views }}</td>
-              <td class="text-center border px-4 py-1">{{ $article->likes->likes }}</td>
+              <td class="text-center border px-4 py-1">{{ count($article->likes) }}</td>
               <td class="border px-4 py-1">
                 {{-- <a class="block underline hover:no-underline text-blue-600 hover:text-black" href=""><i class="fas fa-edit"></i>EDIT</a>
                 <a class="block underline hover:no-underline text-red-600 hover:text-black" href=""><i class="fas fa-trash-alt"></i>DELETE</a> --}}

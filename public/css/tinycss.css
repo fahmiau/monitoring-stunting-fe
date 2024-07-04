@@ -69,3 +69,12 @@
   padding-bottom: 1rem;
   padding-top: 1rem;
 }
+
+.my-4{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.indent-8{
+  text-indent: 2rem;
+}
