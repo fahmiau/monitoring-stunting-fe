@@ -1,4 +1,4 @@
-const local_url = 'http://127.0.0.1:8001'
+const local_url = 'http://167.172.85.4'
 
 async function likeArticle(article_id,liked){
   var data = {

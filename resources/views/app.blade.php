@@ -9,8 +9,8 @@
         <script src="{!! mix('js/app.js') !!}"></script>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
-            const api_url = "http://127.0.0.1:1000/api/";
-            const local_url = "http://127.0.0.1:8001"
+            const api_url = "http://167.172.85.4/api/";
+            const local_url = "http://167.172.85.4"
         </script>
         <title>Cegah Stunting - @yield('title')</title>
         <link rel="shortcut icon" href="{{ asset('img/icons/logo_kecil.png') }}" type="image/x-icon">
