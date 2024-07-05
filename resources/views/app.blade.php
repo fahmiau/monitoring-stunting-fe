@@ -9,7 +9,7 @@
         <script src="{!! mix('js/app.js') !!}"></script>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
-            const api_url = "http://167.172.85.4/api/";
+            const api_url = "http://167.172.85.4:8080/api/";
             const local_url = "http://167.172.85.4"
         </script>
         <title>Cegah Stunting - @yield('title')</title>
