@@ -249,7 +249,7 @@
         @if ($children->status_children != null)
           <input type="hidden" name="status_children_id" id="status_children_id" value="{{ $children->status_children->id }}">
         @endif
-          <label class="font-medium w-full" for="status_children">Status Anak</label>
+          <label class="font-medium w-full" for="status_children">Status Data Kembang Anak</label>
           <select
             class="inline-block w-1/4 rounded-md pl-4 text-lg py-2 shadow-md border border-transparent focus:outline-none focus:ring-2 ring-blue-400"
             type="number" name="status_children" id="status_children">

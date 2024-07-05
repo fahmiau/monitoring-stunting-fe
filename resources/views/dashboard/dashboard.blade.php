@@ -104,7 +104,7 @@
 <input type="hidden" name="status_diatas" id="status_diatas" value="{{ $data->status_diatas }}">
 <div class="flex flex-wrap justify-center items-center">
     <div class="w-1/2 bg-swhite px-16 rounded-xl border-t-8 shadow-xl border-secondary">
-        <h2 class="text-2xl text-center font-medium mt-8">Grafik Status Stunting</h2>
+        <h2 class="text-2xl text-center font-medium mt-8">Grafik Status Data Kembang</h2>
         <div class="p-6">
             <canvas class="" id="report-chart" width="undefined" height="undefined"></canvas>
         </div>
