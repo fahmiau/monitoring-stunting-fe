@@ -29,9 +29,17 @@ class ChildrenController extends Controller
             'Accept' => 'application/json',
         ];
         $client = new Client(['base_uri' => $this->uri]);
-        $response = $client->get($endpoint,['headers' => $headers]);
-        $result = json_decode($response->getBody()->getContents());
-        return $result;
+        try {
+            $response = $client->get($endpoint,['headers' => $headers]);
+            $result = json_decode($response->getBody()->getContents());
+            return $result;
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+            if ($e->getResponse()->getStatusCode() == 401) {
+                return redirect()->route('login');
+            }
+            throw $e;
+        }
+        
 
     }
 

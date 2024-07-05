@@ -28,17 +28,17 @@ class UserController extends Controller
     {
         $headers = $this->headers();
         $client = new Client(['base_uri' => $this->uri]);
-        $response = $client->get($endpoint,['headers' => $headers]);
         try {
+            $response = $client->get($endpoint,['headers' => $headers]);
             $result = json_decode($response->getBody()->getContents());
             // dd($result);
-        } catch (\Exception $res) {
-            // $result = $res;
-            if (strpos($res->getMessage(),'Unauthenticated') !== false) {
-                return redirect()->back();
+            return $result;
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+            if ($e->getResponse()->getStatusCode() == 401) {
+                return redirect()->route('login');
             }
+            throw $e;
         }
-        return $result;
     }
 
     public function postData($data,$endpoint)
