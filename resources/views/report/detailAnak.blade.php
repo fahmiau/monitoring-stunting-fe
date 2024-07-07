@@ -2,10 +2,10 @@
 @section('title','Detail')
 @section('container')
 @include('partials.titlePage',['title' => 'Detail Anak'])
-  <div class="container max-w-min ml-8 filter drop-shadow-xl p-8 rounded-xl">
+  <div class="container w-11/12 ml-8 filter drop-shadow-xl p-8 rounded-xl">
     <form action="{{ url('/children/update') }}" method="POST">
       @csrf
-      <div class="w-full bg-white filter drop-shadow-xl p-4 rounded-xl border-t-4 border-t-secondary">
+      <div class="w-full bg-gray-100 filter drop-shadow-xl p-4 rounded-xl border-t-4 border-t-secondary">
         <div class="flex flex-wrap items-end">
           <input type="hidden" name="mother_id" id="mother_id" value="{{ $children->mother->id }}">
           <input type="hidden" name="id" id="id" value="{{ $children->id }}">
@@ -152,7 +152,7 @@
       </div>
     </form>
 
-    <div class="w-full bg-white filter drop-shadow-xl p-4 rounded-xl border-t-4 border-t-secondary mt-10">
+    <div class="w-full bg-gray-100 filter drop-shadow-xl p-4 rounded-xl border-t-4 border-t-secondary mt-10">
       <input type="hidden" value="{{ $children->id }}" name="childrenId" id="childrenId">
       <input type="hidden" name="gender" id="gender" value="{{ ($children->jenis_kelamin == 'Laki-laki') ? 'boy' : 'girl' }}">
       <h2 class="text-lg font-medium text-center mb-3">Data Bulanan</h2>
