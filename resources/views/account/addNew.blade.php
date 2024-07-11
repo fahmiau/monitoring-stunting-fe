@@ -33,7 +33,7 @@
           <option value="Kader">Kader</option>
           <option value="Bidan">Bidan</option>
           <option value="Perawat">Perawat</option>
-          <option value="Admin">Admin</option>
+          <option value="Admin" disabled>Admin</option>
         </select>
       </div>
       {{-- invisible show sesuai select --}}
