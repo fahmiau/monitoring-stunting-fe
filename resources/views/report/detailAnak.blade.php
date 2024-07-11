@@ -240,8 +240,8 @@
             @endforeach
           @else
             @include('report.lastRow',[
-              'bulan_ke'=>1,
-              'last_row'=>1])
+              'bulan_ke'=>0,
+              'last_row'=>0])
           @endif
         </tbody>
       </table>
