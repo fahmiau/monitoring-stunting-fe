@@ -134,7 +134,17 @@ class UserController extends Controller
 
     public function addView()
     {
-        return view('account.addNew');
+        $daerah = Session::get('user_daerah');
+        $provinsi = $this->getData('provinsi/all');
+        $kota_kabupaten = $this->getData('kota-kabupaten/by-provinsi/'.$daerah->provinsi_id);
+        $kecamatan = $this->getData('kecamatan/by-kota-kabupaten/'.$daerah->kota_kabupaten_id);
+        $kelurahan = $this->getData('kelurahan/by-kecamatan/'.$daerah->kecamatan_id);
+        return view('account.addNew')
+            ->with('data_daerah',$daerah)
+            ->with('provinsis',$provinsi)
+            ->with('kota_kabupatens',$kota_kabupaten)
+            ->with('kecamatans',$kecamatan)
+            ->with('kelurahans',$kelurahan);
     }
 
     public function addNew(Request $request)
@@ -266,7 +276,7 @@ class UserController extends Controller
     {
         $headers = $this->headers();
         $client = new Client(['base_uri' => $this->uri]);
-        $response = $client->delete('kaderx/delete/'.$id,['headers' => $headers]);
+        $response = $client->delete('kader/delete/'.$id,['headers' => $headers]);
         $res =  json_decode($response->getBody()->getContents());
         if ($res->message == 'Data Kader Berhasil Dihapus') {
             return 'success';

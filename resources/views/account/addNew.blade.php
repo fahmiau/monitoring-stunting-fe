@@ -43,28 +43,36 @@
             <label class="font-medium" for="provinsi_id">Provinsi</label>
             <select onchange="findKotaKab(this.value)" name="provinsi_id" id="provinsi_id" class="block w-full my-1 rounded-md pl-4 text-lg py-2 shadow-md border border-transparent focus:outline-none focus:ring-2 ring-blue-400">
               <option value="all" disabled selected>-ALL-</option>
-              {{-- fetch di js --}}
+              @foreach ($provinsis as $provinsi)
+                <option value="{{ $provinsi->id }}" {{ ($provinsi->id == $data_daerah->provinsi_id) ? 'selected' : '' }}>{{ $provinsi->provinsi }}</option>
+              @endforeach
             </select>
           </div>
           <div class="w-1/4 py-2 px-4">
             <label class="font-medium" for="kota_kabupaten_id">Kota/Kabupaten</label>
             <select onchange="findKecamatan(this.value)" name="kota_kabupaten_id" id="kota_kabupaten_id" class="block w-full my-1 rounded-md pl-4 text-lg py-2 shadow-md border border-transparent focus:outline-none focus:ring-2 ring-blue-400">
               <option value="all" disabled selected>-ALL-</option>
-              {{-- fetch di js --}}
+              @foreach ($kota_kabupatens as $kota_kab)
+                <option value="{{ $kota_kab->id }}" {{ ($kota_kab->id == $data_daerah->kota_kabupaten_id) ? 'selected' : ''}}>{{ $kota_kab->kota_kabupaten }}</option>
+              @endforeach
             </select>
           </div>
           <div class="w-1/4 py-2 px-4">
             <label class="font-medium" for="kecamatan_id">Kecamatan</label>
             <select onchange="findKelurahan(this.value)" name="kecamatan_id" id="kecamatan_id" class="block w-full my-1 rounded-md pl-4 text-lg py-2 shadow-md border border-transparent focus:outline-none focus:ring-2 ring-blue-400">
               <option value="all" disabled selected>-ALL-</option>
-              {{-- fetch di js --}}
+              @foreach ($kecamatans as $kec)
+                <option value="{{ $kec->id }}" {{ ($kec->id == $data_daerah->kecamatan_id ? 'selected' : '') }}>{{ $kec->kecamatan }}</option>
+              @endforeach
             </select>
           </div>
           <div class="w-1/4 py-2 px-4">
             <label class="font-medium" for="kelurahan_id">Kelurahan</label>
             <select name="kelurahan_id" id="kelurahan_id" class="block w-full my-1 rounded-md pl-4 text-lg py-2 shadow-md border border-transparent focus:outline-none focus:ring-2 ring-blue-400">
               <option value="all" disabled selected>-ALL-</option>
-              {{-- fetch di js --}}
+              @foreach ($kelurahans as $kel)
+                <option value="{{ $kel->id }}" {{ ($kel->id == $data_daerah->kelurahan_id ? 'selected' : '') }}>{{ $kel->kelurahan }}</option>
+              @endforeach
             </select>
           </div>
           <div class="w-1/4 py-2 px-4">
@@ -151,17 +159,17 @@
     }
 
     if (val == 'User') {
-      provinsi();
+      // provinsi();
       form.classList.remove("hidden");
       userForm.classList.remove("hidden");
     } else if (val == 'Admin'){
       
     } else if (val == 'Kader'){
       form.classList.remove("hidden");
-      provinsi();
+      // provinsi();
     } else {
       form.classList.remove("hidden");
-      provinsi();
+      // provinsi();
       tempat_kerja_form.classList.remove("hidden");
     }
   }
