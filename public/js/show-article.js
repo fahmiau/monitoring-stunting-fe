@@ -21,7 +21,12 @@ async function likeArticle(article_id,liked){
   .then((res) => {
     console.log(res.data)
     if (res.message == 'success') {
-      Swal.fire('Artikel '+(res.data ? 'Disukai' : 'Tidak Disukai'),'','success')
+      Swal.fire({
+        title: 'Artikel '+ res.data ? 'Disukai' : 'Tidak Disukai',
+        text: '',
+        icon: 'success',
+        confirmButtonColor: '#3085d6'
+      })
       .then(() => location.reload())
     }
   })
@@ -48,7 +53,12 @@ async function addComment() {
   var result = await response.json()
   .then((res) => {
     if (res.message == 'success') {
-      Swal.fire('Komentar Berhasil Ditambahkan','','success')
+      Swal.fire({
+        title: 'Komentar Berhasil Ditambahkan',
+        text: '',
+        icon: 'success',
+        confirmButtonColor: '#3085d6'
+      })
       .then(() => location.reload())
     }
   })
@@ -84,7 +94,12 @@ async function addReplyComment(index){
   var result = await response.json()
   .then((res) => {
     if (res.message == 'success') {
-      Swal.fire('Balasan Berhasil Ditambahkan','','success')
+      Swal.fire({
+        title: 'Balasan Berhasil Ditambahkan',
+        text: '',
+        icon: 'success',
+        confirmButtonColor: '#3085d6'
+      })
       .then(() => location.reload())
     }
   })

@@ -93,7 +93,12 @@
           .then(response => response.text())
           .then((res) => {
             if (res == 'success') {
-              Swal.fire('Data Berhasil Dihapus!','','success')
+              Swal.fire({
+                  title: 'Data Berhasil Dihapus!',
+                  text: '',
+                  icon: 'success',
+                  confirmButtonColor: '#3085d6'
+                })
                 .then(()=>{
                   location.reload()
                 })

@@ -80,6 +80,16 @@ class ChildrenController extends Controller
 
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'nama' => 'required|max:100',
+            'jenis_kelamin' => 'required',
+            'no_akta' => 'required|size:21',
+            'anak_ke' => 'required|numeric|min:1',
+            'nik' => 'required|size:16',
+            'alamat' => 'required|max:255',
+            'tempat_lahir' => 'required|max:15',
+            'tanggal_lahir' => 'required|date',
+        ]);
         $data = $this->postData($request->input(),'children/add');
 
         return redirect('/account/mother/'.$request->mother_id)->with('notification',[

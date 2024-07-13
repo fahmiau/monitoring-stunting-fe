@@ -3,7 +3,16 @@
 @section('container')
 @include('partials.titlePage',['title' => 'Tambah Anak '.$mother->nama])
   {{-- <div class="w-2/3 ml-8 bg-white filter drop-shadow-xl p-8 rounded-xl"> --}}
-
+    @if (session('errors'))
+      <script>
+          Swal.fire({
+              title: 'Error!',
+              text: '{{ session('errors')->first() }}',
+              icon: 'error',
+              confirmButtonColor: '#3085d6'
+          });
+      </script>
+    @endif
   <form action="{{ url('/children/add/store') }}" method="post">
     <div class="ml-8 mr-12">
       <div class="flex flex-wrap">

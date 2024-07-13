@@ -39,7 +39,12 @@
     <script defer>
         var notification = document.body.dataset;
         if (document.body.dataset.notificationType) {
-            Swal.fire(notification.notificationMessage,'',notification.notificationType)
+            Swal.fire({
+                title: notification.notificationMessage,
+                text: '',
+                icon: notification.notificationType,
+                confirmButtonColor: '#3085d6'
+                });
         }
     </script>
 </html>

@@ -135,6 +135,7 @@ class ArticleController extends Controller
     public function articleShow($slug)
     {
         $article = $this->getData('article/show/'.$slug);
+        // dd($article->data);
         return view('article.show')->with('article',$article->data);
     }
 

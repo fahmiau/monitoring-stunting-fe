@@ -3,7 +3,16 @@
 @section('container')
 @include('partials.titlePage',['title' => 'Create Account'])
   {{-- <div class="w-2/3 ml-8 bg-white filter drop-shadow-xl p-8 rounded-xl"> --}}
-
+    @if (session('errors'))
+      <script>
+          Swal.fire({
+              title: 'Error!',
+              text: '{{ session('errors')->first() }}',
+              icon: 'error',
+              confirmButtonColor: '#3085d6'
+          });
+      </script>
+    @endif
   <form action="{{ url('/add-new') }}" method="post">
     <div class="ml-8 mr-12">
       <div class="flex flex-wrap">
@@ -27,7 +36,7 @@
       </div>
       <div class="w-1/4 py-2 px-4">
         <label class="font-medium" for="category">Category</label>
-        <select onchange="categoryForm(this.value)" name="category" id="category" class="block w-full my-1 rounded-md pl-4 text-lg py-2 shadow-md border border-transparent focus:outline-none focus:ring-2 ring-blue-400">
+        <select data-value="{{ old('category') }}" onchange="categoryForm(this.value)" name="category" id="category" class="block w-full my-1 rounded-md pl-4 text-lg py-2 shadow-md border border-transparent focus:outline-none focus:ring-2 ring-blue-400">
           <option value="" disabled selected>Kategori</option>
           <option value="User">Ibu</option>
           <option value="Kader">Kader</option>
@@ -77,7 +86,14 @@
           </div>
           <div class="w-1/4 py-2 px-4">
             <label class="font-medium" for="nik">NIK</label>
-            <input class="block w-full my-1 rounded-md pl-4 text-lg py-2 shadow-md border border-transparent focus:outline-none focus:ring-2 ring-blue-400" type="number" name="nik" id="nik" placeholder="NIK">
+            <input class="block w-full my-1 rounded-md pl-4 text-lg py-2 shadow-md border border-transparent focus:outline-none focus:ring-2 ring-blue-400"
+              type="number" name="nik" id="nik" placeholder="NIK"
+              value="{{ old('nik') }}">
+            @error('nik')
+              <div class="text-red-500 ml-2 text-medium">
+                {{ $message }}
+              </div>
+            @enderror
           </div>
           <div class="w-1/4 py-2 px-4">
             <label class="font-medium" for="nomor_telepon">No Hp Pribadi</label>

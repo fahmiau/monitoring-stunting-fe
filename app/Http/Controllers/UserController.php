@@ -149,6 +149,11 @@ class UserController extends Controller
 
     public function addNew(Request $request)
     {
+        $validated = $request->validate([
+            'nik' => 'required|size:16',
+            'email' => 'required|email:dns',
+            'password' => 'required|min:6|max:255|confirmed'
+        ]);
         try {
             $response = $this->postData($request->input(),'register');
             // dd($response);
