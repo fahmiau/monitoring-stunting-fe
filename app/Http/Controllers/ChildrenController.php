@@ -83,7 +83,7 @@ class ChildrenController extends Controller
         $validated = $request->validate([
             'nama' => 'required|max:100',
             'jenis_kelamin' => 'required',
-            'no_akta' => 'required|size:21',
+            'no_akta' => 'required',
             'anak_ke' => 'required|numeric|min:1',
             'nik' => 'required|size:16',
             'alamat' => 'required|max:255',
@@ -92,7 +92,7 @@ class ChildrenController extends Controller
         ]);
         $data = $this->postData($request->input(),'children/add');
 
-        return redirect('/account/mother/'.$request->mother_id)->with('notification',[
+        return redirect('/account/mother/'.$request->mother_id.'#profil-anak')->with('notification',[
             'type'=>'success',
             'message'=>'Data Anak Berhasil Ditambahkan'
         ]);
