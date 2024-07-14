@@ -13,7 +13,7 @@
           });
       </script>
     @endif
-  <form action="{{ url('/children/add/store') }}" method="post">
+  <form action="{{ url('/children/add/store') }}" method="post" onsubmit="showLoading()">
     <div class="ml-8 mr-12">
       <div class="flex flex-wrap">
         @csrf
@@ -21,23 +21,32 @@
         <div class="w-1/2 py-2 px-4">
           <label class="font-medium" for="name">Nama Lengkap</label>
           <input
-            class="block w-full my-1 rounded-md pl-4 text-lg py-2 shadow-md border border-transparent focus:outline-none focus:ring-2 ring-blue-400 @error('name') border-red-500 @enderror "
+            class="block w-full my-1 rounded-md pl-4 text-lg py-2 shadow-md border border-transparent focus:outline-none focus:ring-2 ring-blue-400 @error('nama') border-red-500 @enderror"
             type="text"
             name="nama"
             id="nama"
             placeholder="John Doe"
-            required value="{{ old('name') }}" autofocus>
+            required value="{{ old('nama', $mother->nama) }}" autofocus>
+          @error('nama')
+            <span class="text-red-500 text-sm">{{ $message }}</span>
+          @enderror
         </div>
       </div>
       <div id="alamat">
         <div class="flex flex-wrap">
           <div class="w-1/4 py-2 px-4">
             <label class="font-medium" for="nik">NIK</label>
-            <input class="block w-full my-1 rounded-md pl-4 text-lg py-2 shadow-md border border-transparent focus:outline-none focus:ring-2 ring-blue-400" type="number" name="nik" id="nik" placeholder="NIK">
+            <input class="block w-full my-1 rounded-md pl-4 text-lg py-2 shadow-md border border-transparent focus:outline-none focus:ring-2 ring-blue-400 @error('nik') border-red-500 @enderror" type="number" name="nik" id="nik" placeholder="NIK" value="{{ old('nik') }}">
+            @error('nik')
+              <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
           </div>
           <div class="w-1/4 py-2 px-4">
             <label class="font-medium" for="alamat">Alamat</label>
-            <input class="block w-full my-1 rounded-md pl-4 text-lg py-2 shadow-md border border-transparent focus:outline-none focus:ring-2 ring-blue-400" type="text" name="alamat" id="alamat" placeholder="Alamat">
+            <input class="block w-full my-1 rounded-md pl-4 text-lg py-2 shadow-md border border-transparent focus:outline-none focus:ring-2 ring-blue-400 @error('alamat') border-red-500 @enderror" type="text" name="alamat" id="alamat" placeholder="Alamat" value="{{ old('alamat') }}">
+            @error('alamat')
+              <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
           </div>
         </div>
         <div class="flex flex-wrap">
@@ -96,34 +105,55 @@
         <div class="flex flex-wrap">
           <div class="w-1/4 py-2 px-4">
             <label class="font-medium" for="no_akta">No Akta</label>
-            <input class="block w-full my-1 rounded-md pl-4 text-lg py-2 shadow-md border border-transparent focus:outline-none focus:ring-2 ring-blue-400" type="text" name="no_akta" id="no_akta" placeholder="No Akta">
+            <input class="block w-full my-1 rounded-md pl-4 text-lg py-2 shadow-md border border-transparent focus:outline-none focus:ring-2 ring-blue-400 @error('no_akta') border-red-500 @enderror" type="text" name="no_akta" id="no_akta" placeholder="No Akta" value="{{ old('no_akta') }}">
+            @error('no_akta')
+              <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
           </div>
           <div class="w-1/4 py-2 px-4">
             <label class="font-medium" for="anak_ke">Anak Ke</label>
-            <input class="block w-full my-1 rounded-md pl-4 text-lg py-2 shadow-md border border-transparent focus:outline-none focus:ring-2 ring-blue-400" type="number" name="anak_ke" id="anak_ke" placeholder="Anak Ke">
+            <input class="block w-full my-1 rounded-md pl-4 text-lg py-2 shadow-md border border-transparent focus:outline-none focus:ring-2 ring-blue-400" type="number" name="anak_ke" id="anak_ke" placeholder="Anak Ke" value="{{ old('anak_ke') }}">
           </div>
           <div class="w-1/6 py-2 px-4">
             <label class="font-medium" for="jenis_kelamin">Jenis Kelamin</label>
             <select name="jenis_kelamin" id="jenis_kelamin" class="block w-full my-1 rounded-md pl-4 text-lg py-2 shadow-md border border-transparent focus:outline-none focus:ring-2 ring-blue-400">
-              <option value="Laki-laki">Laki-laki</option>
-              <option value="Perempuan">Perempuan</option>
+              <option value="Laki-laki" {{ old('jenis_kelamin') == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
+              <option value="Perempuan" {{ old('jenis_kelamin') == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
             </select>
           </div>
           <div class="w-1/4 py-2 px-4">
             <label class="font-medium" for="tempat_lahir">Tempat Lahir</label>
-            <input class="block w-full my-1 rounded-md pl-4 text-lg py-2 shadow-md border border-transparent focus:outline-none focus:ring-2 ring-blue-400" type="text" name="tempat_lahir" id="tempat_lahir" placeholder="Tempat Lahir">
+            <input class="block w-full my-1 rounded-md pl-4 text-lg py-2 shadow-md border border-transparent focus:outline-none focus:ring-2 ring-blue-400 @error('tempat_lahir') border-red-500 @enderror" type="text" name="tempat_lahir" id="tempat_lahir" placeholder="Tempat Lahir" value="{{ old('tempat_lahir') }}">
+            @error('tempat_lahir')
+              <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
           </div>
           <div class="w-1/4 py-2 px-4">
             <label class="font-medium" for="tanggal_lahir">Tanggal Lahir</label>
-            <input class="block w-full my-1 rounded-md pl-4 text-lg py-2 shadow-md border border-transparent focus:outline-none focus:ring-2 ring-blue-400" type="date" name="tanggal_lahir" id="tanggal_lahir" placeholder="Tanggal Lahir">
+            <input class="block w-full my-1 rounded-md pl-4 text-lg py-2 shadow-md border border-transparent focus:outline-none focus:ring-2 ring-blue-400 @error('tanggal_lahir') border-red-500 @enderror" type="date" name="tanggal_lahir" id="tanggal_lahir" placeholder="Tanggal Lahir" value="{{ old('tanggal_lahir') }}">
+            @error('tanggal_lahir')
+              <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
           </div>
         </div>
       </div>
       <div class="mt-4 ml-4">
         <button class="font-medium text-lg border-2 border-secondary bg-[#06CA51] hover:bg-secondary hover:text-primary py-2 px-10 rounded-md object-center transform duration-300" type="submit">Tambah Anak</button>
+        <div id="loading-spinner" class="hidden">
+          <svg class="animate-spin h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+        </div>
       </div>
     </div>
   </form>
-    {{-- </div> --}}
+  {{-- </div> --}}
 <script src="{{ asset('/js/alamat.js') }}"></script>
+<script>
+  function showLoading() {
+    document.querySelector('button[type="submit"]').disabled = true;
+    document.getElementById('loading-spinner').classList.remove('hidden');
+  }
+</script>
 @endsection

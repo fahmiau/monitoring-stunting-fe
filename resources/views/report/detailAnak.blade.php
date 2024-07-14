@@ -295,16 +295,16 @@
       </div>
     </div>
     
-    <div class="max-w-min mt-10 bg-white filter drop-shadow-xl p-4 rounded-xl border-t-4 border-t-secondary">
+    <div class="mt-10 bg-white filter drop-shadow-xl p-4 rounded-xl border-t-4 border-t-secondary h-">
       <h2 class="text-center text-lg font-medium my-4">Grafik Pertumbuhan Tinggi Badan</h2>
       <div>
-        <canvas id="height" width="1200" height="600"></canvas>
+        <canvas id="height" style="width: 100%; height: 500px;"></canvas>
       </div>
     </div>
-    <div class="max-w-min mt-10 bg-white filter drop-shadow-xl p-4 rounded-xl border-t-4 border-t-secondary">
+    <div class="mt-10 bg-white filter drop-shadow-xl p-4 rounded-xl border-t-4 border-t-secondary">
       <h2 class="text-center text-lg font-medium my-4">Grafik Pertumbuhan Berat Badan</h2>
       <div>
-        <canvas id="weight" width="1200" height="600"></canvas>
+        <canvas id="weight" style="width: 100%; height: 500px;"></canvas>
       </div>
     </div>
   </div>
@@ -385,8 +385,11 @@
     .then(response => response.json())
     .then(response => {
       const labels = response.months
+      const dataChildrenLength = response.data_children.length;
+      const limit = 10 + dataChildrenLength;
+
       const data = {
-        labels: labels,
+        labels: labels.slice(0, limit),
         datasets: [
           {
             label: 'Data Anak',
@@ -397,49 +400,49 @@
           },
           {
             label: '-3SD',
-            data: response.negative_3sd,
+            data: response.negative_3sd.slice(0, limit),
             borderColor: 'rgb(0, 0, 0)',
             backgroundColor: 'rgba(0,0,0, 0.4)',
             tension: 0.3
           },
           {
             label: '-2SD',
-            data: response.negative_2sd,
+            data: response.negative_2sd.slice(0, limit),
             borderColor: 'rgb(200,0,0)',
             backgroundColor: 'rgba(200,0,0, 0.4)',
             tension: 0.3
           },
           // {
           //   label: '-1SD',
-          //   data: response.m1sd,
+          //   data: response.m1sd.slice(0, limit),
           //   borderColor: 'rgb(54, 162, 235)',
           //   backgroundColor: 'rgba(54, 162, 235, 0.9)',
           //   tension: 0.3
           // },
           {
             label: 'Median',
-            data: response.median,
+            data: response.median.slice(0, limit),
             borderColor: 'rgb(0, 200, 0)',
             backgroundColor: 'rgba(0,200,0, 0.4)',
             tension: 0.3
           },
           // {
           //   label: '1SD',
-          //   data: response.p1sd,
+          //   data: response.p1sd.slice(0, limit),
           //   borderColor: 'rgb(54, 162, 235)',
           //   backgroundColor: 'rgba(54, 162, 235, 0.9)',
           //   tension: 0.3
           // },
           {
             label: '2SD',
-            data: response.positive_2sd,
+            data: response.positive_2sd.slice(0, limit),
             borderColor: 'rgb(200,0,0)',
             backgroundColor: 'rgba(200,0,0, 0.4)',
             tension: 0.3
           },
           {
             label: '3SD',
-            data: response.positive_3sd,
+            data: response.positive_3sd.slice(0, limit),
             borderColor: 'rgb(0, 0, 0)',
             backgroundColor: 'rgba(0,0,0, 0.4)',
             tension: 0.3
@@ -462,11 +465,18 @@
             }
           },
           scales: {
-            y: {
-              type: 'linear',
-              display: true,
-              position: 'left',
+            x: {
+              title: {
+                display: true,
+                text: 'Bulan'
+              }
             },
+            y: {
+              title: {
+                display: true,
+                text: type === 'weight' ? 'Berat Badan (kg)' : 'Tinggi Badan (cm)'
+              }
+            }
             // y1: {
             //   type: 'linear',
             //   display: true,

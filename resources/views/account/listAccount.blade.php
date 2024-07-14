@@ -2,6 +2,11 @@
 @section('title','List Account')
 @section('container')
   <div class="pt-3 bg-secondary">
+    <!-- Loading Spinner -->
+    <div id="loading-spinner" class="hidden fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
+      <div class="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-64 w-64"></div>
+    </div>
+    <!-- End Loading Spinner -->
     <div class="rounded-tl-3xl bg-primary p-4 text-2xl border-t-8 border-secondary">
       <div class="flex max-w-min">
         <a href="{{ url('/account/mother') }}" class="p-2 rounded-t-lg bg-secondary border-b-secondary border-b-4 font-bold px-8 text-center text-gray-100">Ibu</a>
@@ -89,9 +94,15 @@
       confirmButtonText: 'Hapus data',
     }).then((result) => {
       if (result.isConfirmed) {
+        // Show loading spinner
+        document.getElementById('loading-spinner').classList.remove('hidden');
+
         fetch(local_url+'/account/mother/delete/'+id)
           .then(response => response.text())
           .then((res) => {
+            // Hide loading spinner
+            document.getElementById('loading-spinner').classList.add('hidden');
+
             if (res == 'success') {
               Swal.fire({
                   title: 'Data Berhasil Dihapus!',

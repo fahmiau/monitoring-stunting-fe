@@ -31,7 +31,7 @@
             <th class="px-4 py-1 border w-12">No</th>
             <th class="px-4 py-1 border w-3/12">Nama Kader</th>
             <th class="px-4 py-1 border w-2/12">No Hp Pribadi</th>
-            <th class="px-4 py-1 border w-min-3/12">Alamat</th>
+            <th class="px-4 py-1 border w-3/12">Alamat</th>
             <th class="px-4 py-1 border w-2/12">Kecamatan</th>
             <th class="px-4 py-1 border w-2/12">Kelurahan</th>
             <th class="px-4 py-1 border w-1/12">Action</th>

@@ -1,7 +1,7 @@
 @extends('app')
 @section('title','Report')
 @section('container')
-  @include('partials.titlePage',['title' => 'Report'])
+  @include('partials.titlePage',['title' => 'Report Data Anak'])
     <div class="w-11/12 ml-8 bg-white filter drop-shadow-xl p-8 rounded-xl">
       <div class="grid grid-cols-4 gap-x-8">
 
@@ -55,8 +55,8 @@
         </div>
       </div>
       <div class="flex justify-center flex-col items-center">
-        <div class="w-1/2 my-8">
-          <canvas class="" id="report-chart" width="undefined" height="undefined"></canvas>
+        <div class="my-8">
+          <canvas class="" id="report-chart" style="width: 100%; height:200px;"></canvas>
         </div>
         
         <table class="border-separate border table-auto">

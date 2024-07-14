@@ -31,8 +31,8 @@ Route::get('/add-new',[UserController::class,'addView']);
 Route::get('/account/mother/{mother_id}',[UserController::class,'showAccount']);
 Route::get('/account/nakes/{nakes_id}',[UserController::class,'showNakes']);
 Route::get('/account/kader/{kader_id}',[UserController::class,'showKader']);
-Route::get('/account/nakes',[UserController::class,'nakesAccounts']);
-Route::get('/account/kader',[UserController::class,'kaderAccounts']);
+Route::get('/account/nakes',[UserController::class,'nakesAccounts'])->name('viewNakesList');
+Route::get('/account/kader',[UserController::class,'kaderAccounts'])->name('viewKaderList');
 Route::post('/account/mother/update',[UserController::class, 'motherUpdate']);
 Route::post('/add-new',[UserController::class,'addNew']);
 Route::get('/account/mother/delete/{id}',[UserController::class,'motherDelete']);
@@ -58,7 +58,7 @@ Route::get('/{type}/all/by-{daerah}/{daerah_id}',[UserController::class,'getAcco
 Route::get('/children/detail/{id}',[ReportController::class,'viewChildrenDetail']);
 Route::get('/report',[ReportController::class,'viewReport']);
 
-Route::get('/article/list',[ArticleController::class,'index']);
+Route::get('/article/list',[ArticleController::class,'index'])->name('articleList');
 Route::get('/article/published',[ArticleController::class,'articleShowPublished']);
 Route::get('/article/published/{slug}',[ArticleController::class,'articleShow']);
 Route::get('/article/create',[ArticleController::class,'create']);

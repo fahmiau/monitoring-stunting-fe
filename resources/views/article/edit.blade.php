@@ -70,7 +70,7 @@
   @include('partials.titlePage',['title' => 'Article Editor'])
   <div class="ml-8">
 
-    <form action="{{ url('/article/update/'.$article->slug) }}" method="POST">
+    <form action="{{ url('/article/update/'.$article->slug) }}" method="POST" onsubmit="showLoading()">
       @csrf
       <label class="block font-medium" for="title">Judul Artikel</label>
       <input class="w-1/2" type="text" name="title" value="{{ $article->title }}">
@@ -94,6 +94,12 @@
       <span>Tidak</span>
       <div class="mt-4 bg-[#06CA51] py-2 px-4 max-w-min rounded-md">
         <button class="font-medium" type="submit">Simpan</button>
+        <div id="loading-spinner" class="hidden">
+          <svg class="animate-spin h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+        </div>
       </div>
     </form>
   
@@ -106,5 +112,9 @@
         document.getElementById('image_name').value = img.dataset.mceSrc.replace('/storage/article_images/','')
       }
     })
+    function showLoading() {
+      document.querySelector('button[type="submit"]').disabled = true;
+      document.getElementById('loading-spinner').classList.remove('hidden');
+    }
   </script>
 @endsection

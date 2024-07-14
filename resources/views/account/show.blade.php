@@ -201,7 +201,7 @@
   </a>
   
   <div class="ml-8 mb-8">
-    <table class="border-collapse border bg-white w-3/4">
+    <table class="border-collapse border bg-white w-3/4" id="profil-anak">
       <thead>
         <tr class="bg-blue-100">
           <th class="px-4 py-1 border w-8">No</th>
