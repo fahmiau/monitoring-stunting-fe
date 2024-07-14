@@ -79,7 +79,7 @@ class ArticleController extends Controller
             // dd($res->getMessage());
         }
         // dd($data->data->slug);
-        return redirect()->route('articleEdit',['slug' => $data->data->slug])->with('notification',[
+        return redirect()->route('articleList')->with('notification',[
             'type'=>'success',
             'message'=>'Artikel Berhasil Ditambahkan'
         ]);
@@ -120,7 +120,7 @@ class ArticleController extends Controller
 
         }
         // dd($data);
-        return redirect()->route('articleEdit',['slug' => $data->slug])->with('notification',[
+        return redirect()->route('articleList')->with('notification',[
             'type'=>'success',
             'message'=>'Artikel Berhasil Diubah'
         ]);
