@@ -159,11 +159,27 @@ class UserController extends Controller
             // dd($response);
         } catch (\Exception $res) {
             // dd($res);
+            return redirect()->back()->with('notification',[
+                'type'=>'error',
+                'message'=>'Terjadi Kesalahan'
+            ]);
         }
-        return redirect()->route('viewAccount')->with('notification',[
-            'type'=>'success',
-            'message'=>'Akun Berhasil Ditambahkan'
-        ]);
+        if ($response->role->category == 'Perawat' || $response->role->category == 'Bidan') {
+            return redirect()->route('viewNakesList')->with('notification',[
+                'type'=>'success',
+                'message'=>'Akun Nakes Berhasil Ditambahkan'
+            ]);
+        } elseif ($response->role->category == 'Kader') {
+            return redirect()->route('viewKaderList')->with('notification',[
+                'type'=>'success',
+                'message'=>'Akun Kader Berhasil Ditambahkan'
+            ]);
+        } else {   
+            return redirect()->route('viewAccount')->with('notification',[
+                'type'=>'success',
+                'message'=>'Akun Ibu Berhasil Ditambahkan'
+            ]);
+        }
     }
 
     public function showAccount($mother_id)
