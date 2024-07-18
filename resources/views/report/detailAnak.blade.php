@@ -389,7 +389,7 @@
       const limit = 10 + dataChildrenLength;
 
       const data = {
-        labels: labels.slice(0, limit),
+        labels: labels,
         datasets: [
           {
             label: 'Data Anak',
@@ -400,49 +400,49 @@
           },
           {
             label: '-3SD',
-            data: response.negative_3sd.slice(0, limit),
+            data: response.negative_3sd,
             borderColor: 'rgb(0, 0, 0)',
             backgroundColor: 'rgba(0,0,0, 0.4)',
             tension: 0.3
           },
           {
             label: '-2SD',
-            data: response.negative_2sd.slice(0, limit),
+            data: response.negative_2sd,
             borderColor: 'rgb(200,0,0)',
             backgroundColor: 'rgba(200,0,0, 0.4)',
             tension: 0.3
           },
           // {
           //   label: '-1SD',
-          //   data: response.m1sd.slice(0, limit),
+          //   data: response.m1sd,
           //   borderColor: 'rgb(54, 162, 235)',
           //   backgroundColor: 'rgba(54, 162, 235, 0.9)',
           //   tension: 0.3
           // },
           {
             label: 'Median',
-            data: response.median.slice(0, limit),
+            data: response.median,
             borderColor: 'rgb(0, 200, 0)',
             backgroundColor: 'rgba(0,200,0, 0.4)',
             tension: 0.3
           },
           // {
           //   label: '1SD',
-          //   data: response.p1sd.slice(0, limit),
+          //   data: response.p1sd,
           //   borderColor: 'rgb(54, 162, 235)',
           //   backgroundColor: 'rgba(54, 162, 235, 0.9)',
           //   tension: 0.3
           // },
           {
             label: '2SD',
-            data: response.positive_2sd.slice(0, limit),
+            data: response.positive_2sd,
             borderColor: 'rgb(200,0,0)',
             backgroundColor: 'rgba(200,0,0, 0.4)',
             tension: 0.3
           },
           {
             label: '3SD',
-            data: response.positive_3sd.slice(0, limit),
+            data: response.positive_3sd,
             borderColor: 'rgb(0, 0, 0)',
             backgroundColor: 'rgba(0,0,0, 0.4)',
             tension: 0.3
