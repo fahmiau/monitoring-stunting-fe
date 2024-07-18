@@ -37,7 +37,7 @@
       <div class="w-1/4 py-2 px-4">
         <label class="font-medium" for="category">Category</label>
         <select onchange="categoryForm(this.value)" name="category" id="category" class="block w-full my-1 rounded-md pl-4 text-lg py-2 shadow-md border border-transparent focus:outline-none focus:ring-2 ring-blue-400">
-          <option value="" disabled {{ old('category') ? '' : 'selected' }}>Kategori</option>
+          <option value="" disabled selected>Kategori</option>
           <option value="User">Ibu</option>
           <option value="Kader">Kader</option>
           <option value="Bidan">Bidan</option>
@@ -87,7 +87,7 @@
           <div class="w-1/4 py-2 px-4">
             <label class="font-medium" for="nik">NIK</label>
             <input class="block w-full my-1 rounded-md pl-4 text-lg py-2 shadow-md border border-transparent focus:outline-none focus:ring-2 ring-blue-400"
-              type="number" name="nik" id="nik" placeholder="NIK"
+              type="number" name="nik" id="nik" placeholder="16 digit"
               value="{{ old('nik') }}">
             @error('nik')
               <div class="text-red-500 ml-2 text-medium">

@@ -36,7 +36,7 @@
         <div class="flex flex-wrap">
           <div class="w-1/4 py-2 px-4">
             <label class="font-medium" for="nik">NIK</label>
-            <input class="block w-full my-1 rounded-md pl-4 text-lg py-2 shadow-md border border-transparent focus:outline-none focus:ring-2 ring-blue-400 @error('nik') border-red-500 @enderror" type="number" name="nik" id="nik" placeholder="NIK" value="{{ old('nik') }}">
+            <input class="block w-full my-1 rounded-md pl-4 text-lg py-2 shadow-md border border-transparent focus:outline-none focus:ring-2 ring-blue-400 @error('nik') border-red-500 @enderror" type="number" name="nik" id="nik" placeholder="16 digit" value="{{ old('nik') }}">
             @error('nik')
               <span class="text-red-500 text-sm">{{ $message }}</span>
             @enderror

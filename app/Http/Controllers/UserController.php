@@ -156,10 +156,14 @@ class UserController extends Controller
         ]);
         try {
             $response = $this->postData($request->input(),'register');
-            // dd($response);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return redirect()->back()->withErrors($e->errors())->withInput()->with('notification',[
+                'type'=>'error',
+                'message'=> $e->errors()
+            ]);
         } catch (\Exception $res) {
-            // dd($res);
-            return redirect()->back()->with('notification',[
+            dd($res);
+            return redirect()->back()->withInput()->with('notification',[
                 'type'=>'error',
                 'message'=>'Terjadi Kesalahan'
             ]);
