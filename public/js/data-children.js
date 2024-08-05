@@ -4,10 +4,11 @@ var rows = document.querySelectorAll("[id^=row_]")
 var buttons = document.querySelectorAll('[id^=data_children_update_btn_')
 async function newDataChildren(last_row_id) {
   if (document.getElementById('panjang_badan').value < 0){
-    Swal.fire('Data Panjang Anak Negatif','','error')
-    .then(() => location.reload())
-    return 0;
+    console.log(ocument.getElementById('panjang_badan').value);
+    Swal.fire('Data Panjang Anak Negatif !','','error')
+    .then(() => location.reload());
   }
+
   var data = {
     children_id : document.getElementById('childrenId').value,
     tanggal : document.getElementById('tanggal').value,
