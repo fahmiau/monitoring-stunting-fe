@@ -11,6 +11,10 @@ async function newDataChildren(last_row_id) {
     berat_badan : document.getElementById('berat_badan').value,
     panjang_badan : document.getElementById('panjang_badan').value
   }
+  if (document.getElementById('panjang_badan').value){
+    Swal.fire('Data Panjang Anak Negatif','','Error')
+    .then(() => location.reload())
+  }
   // Swal.fire({
   //   icon: 'error',
   //   title: 'Oops...',
