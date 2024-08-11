@@ -38,7 +38,6 @@
           name="category"
           id="category"
           class="block w-full my-1 rounded-md pl-4 text-lg py-2 shadow-md border border-transparent focus:outline-none focus:ring-2 ring-blue-400">
-          {{-- <option value="" disabled selected>Kategori</option> --}}
           <option value="User" selected>Ibu</option>
           <option value="Kader" disabled>Kader</option>
           <option value="Bidan" disabled>Bidan</option>

@@ -3,10 +3,27 @@
 var rows = document.querySelectorAll("[id^=row_]")
 var buttons = document.querySelectorAll('[id^=data_children_update_btn_')
 async function newDataChildren(last_row_id) {
-  if (document.getElementById('panjang_badan').value < 0){
-    console.log(ocument.getElementById('panjang_badan').value);
-    Swal.fire('Data Panjang Anak Negatif !','','error')
-    .then(() => location.reload());
+  const panjangBadan = parseFloat(document.getElementById('panjang_badan').value);
+  const beratBadan = parseFloat(document.getElementById('berat_badan').value);
+  
+  if (panjangBadan < 0) {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Peringatan !',
+      text: 'Panjang Badan Anak Negatif',
+      confirmButtonColor: '#3085d6',
+    });
+    return;
+  }
+
+  if (beratBadan > 1000) {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Peringatan !',
+      text: 'Berat badan terlalu besar, pastikan dalam kilogram',
+      confirmButtonColor: '#3085d6'
+    });
+    return;
   }
 
   var data = {
@@ -14,17 +31,10 @@ async function newDataChildren(last_row_id) {
     tanggal : document.getElementById('tanggal').value,
     bulan_ke : document.getElementById('bulan_ke').value,
     tempat : document.getElementById('tempat').value,
-    berat_badan : document.getElementById('berat_badan').value,
-    panjang_badan : document.getElementById('panjang_badan').value
+    berat_badan : beratBadan,
+    panjang_badan : panjangBadan
   }
-  // Swal.fire({
-  //   icon: 'error',
-  //   title: 'Oops...',
-  //   text: 'Something went wrong!',
-  //   footer: '<a href="">Why do I have this issue?</a>'
-  // })
-  // console.log(data)
-  // console.log(JSON.stringify(data))
+
   var response = await fetch(local_url+'/data-children/add',{
     method: 'POST',
     headers: {
@@ -37,11 +47,36 @@ async function newDataChildren(last_row_id) {
     body: JSON.stringify(data)
   })
   var result = await response.json()
-  Swal.fire('Data Anak Berhasil Ditambah','','success')
-    .then(() => location.reload())
+  Swal.fire({
+    icon: 'success',
+    text: 'Data Anak Berhasil Ditambah',
+    confirmButtonColor: '#3085d6',
+  }).then(() => location.reload())
 }
 
 async function updateDataChildren(id) {
+  const panjangBadan = parseFloat(document.getElementById('panjang_badan').value);
+  const beratBadan = parseFloat(document.getElementById('berat_badan').value);
+  
+  if (panjangBadan < 0) {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Peringatan !',
+      text: 'Panjang Badan Anak Negatif',
+      confirmButtonColor: '#3085d6',
+    });
+    return;
+  }
+
+  if (beratBadan > 100) {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Peringatan !',
+      text: 'Berat badan terlalu besar, pastikan dalam kilogram',
+      confirmButtonColor: '#3085d6'
+    });
+    return;
+  }
   var data = {
     children_id : document.getElementById('childrenId').value,
     id : document.getElementById('data_children_id_'+id).value,
@@ -63,8 +98,11 @@ async function updateDataChildren(id) {
     body: JSON.stringify(data)
   })
   var result = await response.json()
-  Swal.fire('Data Anak Berhasil Diubah','','success')
-    .then(() => location.reload())
+  Swal.fire({
+    icon: 'success',
+    text: 'Data Anak Berhasil Diubah',
+    confirmButtonColor: '#3085d6',
+  }).then(() => location.reload())
   // document.getElementById('tanggal_'+id).value = result.data.tanggal
   // document.getElementById('bulan_ke_'+id).value = result.data.bulan_ke
   // document.getElementById('tempat_'+id).value = result.data.tempat

@@ -151,9 +151,50 @@ class UserController extends Controller
     {
         $validated = $request->validate([
             'nik' => 'required|size:16',
-            'email' => 'required|email:dns',
+            'email' => 'required|email:rfc,dns',
             'password' => 'required|min:6|max:255|confirmed'
         ]);
+
+        if ($request->category == 'User') {
+            $validateMother = $request->validate([
+                'golongan_darah' => 'required',
+                'pendidikan' => 'required|max:5',
+                'pekerjaan' => 'required|max:20',
+                'provinsi_id' => 'required',
+                'kota_kabupaten_id' => 'required',
+                'kecamatan_id' => 'required',
+                'kelurahan_id' => 'required',
+                'alamat' => 'required|max:255',
+                'nomor_telepon' => 'required|max:15',
+                'tempat_lahir' => 'required|max:15',
+                'tanggal_lahir' => 'required|date',
+            ]);
+        }
+
+        if ($request->category == 'Kader') {
+            $validateKader = $request->validate([
+                'provinsi_id' => 'required',
+                'kota_kabupaten_id' => 'required',
+                'kecamatan_id' => 'required',
+                'kelurahan_id' => 'required',
+                'alamat' => 'required|max:255',
+                'nomor_telepon' => 'required|max:15',
+            ]);
+        }
+
+        if ($request->category == 'Perawat' || $request->category == 'Bidan') {
+            $validateNakes = $request->validate([
+                'provinsi_id' => 'required',
+                'kota_kabupaten_id' => 'required',
+                'kecamatan_id' => 'required',
+                'kelurahan_id' => 'required',
+                'alamat' => 'required|max:255',
+                'nomor_telepon' => 'required|max:15',
+                'tempat_kerja' => 'required',
+                'nomor_telepon_kerja' => 'required',
+                'alamat_kerja' => 'required',
+            ]);
+        }
         try {
             $response = $this->postData($request->input(),'register');
         } catch (\Illuminate\Validation\ValidationException $e) {
@@ -162,7 +203,6 @@ class UserController extends Controller
                 'message'=> $e->errors()
             ]);
         } catch (\Exception $res) {
-            dd($res);
             return redirect()->back()->withInput()->with('notification',[
                 'type'=>'error',
                 'message'=>'Terjadi Kesalahan'

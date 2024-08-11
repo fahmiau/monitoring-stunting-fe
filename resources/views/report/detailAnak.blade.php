@@ -162,8 +162,8 @@
             <th class="px-4 py-1 border-2 border-blue-600 w-1/12">Bulan Ke -</th>
             <th class="px-4 py-1 border-2 border-blue-600 w-3/12">Tanggal</th>
             <th class="px-4 py-1 border-2 border-blue-600 w-2/12">Tempat</th>
-            <th class="px-4 py-1 border-2 border-blue-600 w-2/12">PB</th>
-            <th class="px-4 py-1 border-2 border-blue-600 w-2/12">BB</th>
+            <th class="px-4 py-1 border-2 border-blue-600 w-2/12">PB (cm)</th>
+            <th class="px-4 py-1 border-2 border-blue-600 w-2/12">BB (kg)</th>
             <th class="px-4 py-1 border-2 border-blue-600 w-2/12">Action</th>
           </tr>
         </thead>
