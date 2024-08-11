@@ -55,8 +55,8 @@ async function newDataChildren(last_row_id) {
 }
 
 async function updateDataChildren(id) {
-  const panjangBadan = parseFloat(document.getElementById('panjang_badan').value);
-  const beratBadan = parseFloat(document.getElementById('berat_badan').value);
+  const panjangBadan = parseFloat(document.getElementById('panjang_badan_'+id).value);
+  const beratBadan = parseFloat(document.getElementById('berat_badan_'+id).value);
   
   if (panjangBadan < 0) {
     Swal.fire({
