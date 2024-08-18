@@ -16,7 +16,17 @@ async function newDataChildren(last_row_id) {
     return;
   }
 
-  if (beratBadan > 1000) {
+  if (beratBadan < 0) {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Peringatan !',
+      text: 'Berat Badan Anak Negatif',
+      confirmButtonColor: '#3085d6',
+    });
+    return;
+  }
+
+  if (beratBadan > 100) {
     Swal.fire({
       icon: 'warning',
       title: 'Peringatan !',
@@ -63,6 +73,16 @@ async function updateDataChildren(id) {
       icon: 'warning',
       title: 'Peringatan !',
       text: 'Panjang Badan Anak Negatif',
+      confirmButtonColor: '#3085d6',
+    });
+    return;
+  }
+
+  if (beratBadan < 0) {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Peringatan !',
+      text: 'Berat Badan Anak Negatif',
       confirmButtonColor: '#3085d6',
     });
     return;
